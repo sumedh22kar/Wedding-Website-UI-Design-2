@@ -121,6 +121,704 @@ a:focus-visible {
 }
 
 /* ==============================================================================
+   2. THE LIVING WEDDING INVITATION — PREMIUM OPENING ANIMATION
+   ==============================================================================
+   Features:
+   - Full-viewport warm ivory paper environment with subtle grain & vignette
+   - Gentle champagne ambient glow & drifting delicate flower petals
+   - Faint botanical line art in 4 outer corners
+   - Custom layered HTML/CSS/SVG envelope construction with physical folds
+   - Signature champagne-gold wax seal with engraved V & A monogram
+   - Coordinated 6-Phase motion timeline (0.0s - 3.1s):
+     1) Subtle tap settle & warm glow shift
+     2) Tactile wax seal release & smooth upward fade
+     3) True 3D flap backward rotation (rotateX 180deg) revealing maroon lining
+     4) Handcrafted ivory card emergence from inside envelope pocket
+     5) Names reveal & smooth full-screen card expansion
+     6) Seamless dissolve into existing full-screen couple photograph
+   ============================================================================== */
+
+.living-invitation-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100svh;
+  z-index: 9999;
+  background-color: var(--color-ivory);
+  background-image: radial-gradient(rgba(210, 170, 85, 0.08) 1px, transparent 1px);
+  background-size: 26px 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.living-invitation-overlay.overlay-expanding {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Ambient Champagne Glow */
+.living-ambient-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(circle at 50% 48%, rgba(210, 170, 85, 0.18) 0%, rgba(248, 238, 233, 0) 65%);
+  animation: livingGlowShift 12s ease-in-out infinite alternate;
+  transition: background 0.6s ease;
+}
+
+.living-ambient-glow.glow-warmed {
+  background: radial-gradient(
+    circle at 50% 48%,
+    rgba(210, 170, 85, 0.32) 0%,
+    rgba(201, 157, 150, 0.15) 45%,
+    rgba(248, 238, 233, 0) 72%
+  );
+}
+
+@keyframes livingGlowShift {
+  0% {
+    transform: scale(1) translate(0, 0);
+    opacity: 0.75;
+  }
+  50% {
+    transform: scale(1.08) translate(-1%, 1%);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.96) translate(1%, -1%);
+    opacity: 0.8;
+  }
+}
+
+/* Soft Paper Vignette Shading */
+.living-paper-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(ellipse at center, transparent 52%, rgba(74, 15, 34, 0.06) 100%);
+}
+
+/* Faint Botanical Corner Line Art */
+.living-corner-botanical {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.55;
+  transition: opacity 0.5s ease;
+  animation: botanicalBreathe 8s ease-in-out infinite alternate;
+}
+
+.living-corner-botanical.top-left {
+  top: 1.5rem;
+  left: 1.5rem;
+}
+
+.living-corner-botanical.top-right {
+  top: 1.5rem;
+  right: 1.5rem;
+  transform: scaleX(-1);
+}
+
+.living-corner-botanical.bottom-left {
+  bottom: 1.5rem;
+  left: 1.5rem;
+  transform: scaleY(-1);
+}
+
+.living-corner-botanical.bottom-right {
+  bottom: 1.5rem;
+  right: 1.5rem;
+  transform: scale(-1);
+}
+
+@keyframes botanicalBreathe {
+  0% {
+    opacity: 0.45;
+  }
+  100% {
+    opacity: 0.65;
+  }
+}
+
+/* Floating Ambient Flower Petals */
+.living-petals-drift {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.living-petal {
+  position: absolute;
+  border-radius: 50% 0 50% 50%;
+  opacity: 0.65;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 4px rgba(74, 15, 34, 0.08));
+}
+
+.petal-1 {
+  left: 8%;
+  top: -20px;
+  width: 14px;
+  height: 18px;
+  background: linear-gradient(135deg, rgba(201, 157, 150, 0.85), rgba(210, 170, 85, 0.45));
+  animation: petalSwayDown1 15s linear infinite;
+}
+
+.petal-2 {
+  right: 10%;
+  top: -30px;
+  width: 12px;
+  height: 15px;
+  background: linear-gradient(135deg, rgba(231, 201, 125, 0.8), rgba(201, 157, 150, 0.45));
+  animation: petalSwayDown2 17s linear infinite 2.5s;
+}
+
+.petal-3 {
+  left: 14%;
+  top: -25px;
+  width: 10px;
+  height: 13px;
+  background: rgba(248, 238, 233, 0.9);
+  border: 1px solid rgba(210, 170, 85, 0.35);
+  animation: petalSwayDown3 19s linear infinite 5s;
+}
+
+.petal-4 {
+  right: 14%;
+  top: -20px;
+  width: 13px;
+  height: 16px;
+  background: linear-gradient(135deg, rgba(201, 157, 150, 0.75), rgba(74, 15, 34, 0.18));
+  animation: petalSwayDown1 16s linear infinite 1.2s;
+}
+
+.petal-5 {
+  left: 7%;
+  top: -35px;
+  width: 11px;
+  height: 14px;
+  background: linear-gradient(135deg, rgba(210, 170, 85, 0.65), rgba(201, 157, 150, 0.5));
+  animation: petalSwayDown2 18s linear infinite 7s;
+}
+
+@keyframes petalSwayDown1 {
+  0% {
+    transform: translateY(0) rotate(0deg) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.65;
+  }
+  50% {
+    transform: translateY(50vh) rotate(180deg) translateX(25px);
+  }
+  90% {
+    opacity: 0.65;
+  }
+  100% {
+    transform: translateY(105vh) rotate(360deg) translateX(-15px);
+    opacity: 0;
+  }
+}
+
+@keyframes petalSwayDown2 {
+  0% {
+    transform: translateY(0) rotate(20deg) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(50vh) rotate(200deg) translateX(-30px);
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(105vh) rotate(380deg) translateX(20px);
+    opacity: 0;
+  }
+}
+
+@keyframes petalSwayDown3 {
+  0% {
+    transform: translateY(0) rotate(-15deg) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(50vh) rotate(165deg) translateX(20px);
+  }
+  90% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(105vh) rotate(345deg) translateX(-25px);
+    opacity: 0;
+  }
+}
+
+/* Interactive Envelope Button Control */
+.living-envelope-button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 5;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.living-envelope-button:focus-visible .living-envelope-box {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 8px;
+}
+
+/* 3D Envelope Stage & Box */
+.living-envelope-stage {
+  position: relative;
+  width: min(336px, 86vw);
+  height: clamp(210px, 55vw, 226px);
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.living-envelope-stage.stage-settled {
+  transform: translateY(4px);
+}
+
+.living-envelope-stage.stage-expanding-to-hero {
+  transform: scale(1.06);
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.living-envelope-box {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(155deg, #F9F1E8 0%, #EDE0D1 100%);
+  border: 1px solid rgba(210, 170, 85, 0.45);
+  box-shadow:
+    0 18px 42px -8px rgba(74, 15, 34, 0.18),
+    0 4px 12px rgba(74, 15, 34, 0.08);
+}
+
+/* Darker Inner Lining */
+.living-envelope-interior {
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 1;
+  background: #EADCCB;
+}
+
+.interior-maroon-accent {
+  position: absolute;
+  top: 0;
+  left: 5%;
+  right: 5%;
+  height: 80%;
+  background: linear-gradient(175deg, #4A0F22 0%, #300815 100%);
+  clip-path: polygon(0 0, 100% 0, 50% 74%);
+  border-bottom: 1.5px solid rgba(210, 170, 85, 0.65);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* Handcrafted Emerging Invitation Card */
+.living-invitation-card {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 8px;
+  height: 92%;
+  background: linear-gradient(180deg, #FDFBF8 0%, #F8EFE7 100%);
+  border-radius: 3px;
+  z-index: 3;
+  box-shadow: 0 10px 24px -4px rgba(74, 15, 34, 0.14);
+  transform: translateY(0%) rotate(0deg);
+  transition:
+    transform 0.85s cubic-bezier(0.25, 1, 0.35, 1),
+    z-index 0.01s 0.25s,
+    opacity 0.6s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1rem 0.85rem;
+  pointer-events: none;
+  border: 1px solid rgba(210, 170, 85, 0.35);
+}
+
+.living-invitation-card.card-emerged {
+  transform: translateY(-70%) rotate(0deg);
+  z-index: 8;
+  box-shadow: 0 22px 46px -6px rgba(74, 15, 34, 0.22);
+}
+
+.living-invitation-card.card-fullscreen-expand {
+  transform: translateY(-35%) scale(3.2);
+  opacity: 0;
+  transition:
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.8s ease;
+}
+
+.invitation-card-border {
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(210, 170, 85, 0.5);
+  border-radius: 2px;
+  padding: 0.85rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.card-monogram-tag {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid var(--color-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 1px 3px rgba(74, 15, 34, 0.08);
+}
+
+.monogram-initials {
+  font-family: var(--font-serif);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--color-maroon);
+}
+
+.card-names-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0.25rem 0;
+}
+
+.card-kicker-label {
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.card-couple-names {
+  font-family: var(--font-serif);
+  font-size: clamp(0.95rem, 3.2vw, 1.15rem);
+  line-height: 1.25;
+  color: var(--color-maroon);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.card-amp {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.82rem;
+  color: var(--color-gold);
+  font-weight: 400;
+}
+
+.card-divider-wrap {
+  opacity: 0.85;
+}
+
+/* Front Pocket Folds (Conceals card initially) */
+.living-envelope-pocket-front {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.pocket-fold-left {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(0 0, 50.5% 51%, 0 100%);
+  background: linear-gradient(135deg, #F4E7D7 0%, #E6D5C2 100%);
+  filter: drop-shadow(2px 0 3px rgba(74, 15, 34, 0.05));
+}
+
+.pocket-fold-right {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(100% 0, 100% 100%, 49.5% 51%);
+  background: linear-gradient(225deg, #F2E5D5 0%, #E4D3C0 100%);
+  filter: drop-shadow(-2px 0 3px rgba(74, 15, 34, 0.05));
+}
+
+.pocket-fold-bottom {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(0 100%, 50% 47%, 100% 100%);
+  background: linear-gradient(to top, #E8D7C4 0%, #F5ECE0 100%);
+  filter: drop-shadow(0 -3px 5px rgba(74, 15, 34, 0.08));
+}
+
+/* 3D Realistic Folded Triangular Flap */
+.living-envelope-flap-3d {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 55%;
+  transform-origin: top center;
+  transform-style: preserve-3d;
+  z-index: 6;
+  transition:
+    transform 0.8s cubic-bezier(0.35, 1.25, 0.65, 1),
+    z-index 0.01s 0.35s;
+}
+
+.living-envelope-flap-3d.flap-rotated-open {
+  transform: rotateX(180deg);
+  z-index: 2;
+}
+
+.flap-face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.flap-face-front {
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  background: linear-gradient(180deg, #F7EFE4 0%, #EADAC8 100%);
+  filter: drop-shadow(0 4px 6px rgba(74, 15, 34, 0.12));
+}
+
+.flap-gold-crease {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  box-shadow: inset 0 -1.5px 0 rgba(210, 170, 85, 0.45);
+}
+
+.flap-face-back {
+  transform: rotateX(180deg);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  background: linear-gradient(180deg, #3C0A1A 0%, #521124 100%);
+  filter: drop-shadow(0 -3px 5px rgba(74, 15, 34, 0.15));
+}
+
+.flap-maroon-lining {
+  position: absolute;
+  inset: 2px;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  border-bottom: 1.5px solid rgba(210, 170, 85, 0.55);
+}
+
+/* Signature Champagne-Gold Wax Seal */
+.living-wax-seal {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px;
+  height: 56px;
+  z-index: 7;
+  transition:
+    transform 0.32s ease-out,
+    opacity 0.32s ease-out;
+  pointer-events: none;
+}
+
+.living-wax-seal.seal-released {
+  transform: translate(-50%, calc(-50% - 8px)) scale(0.85);
+  opacity: 0;
+}
+
+.wax-seal-outer-rim {
+  width: 100%;
+  height: 100%;
+  border-radius: 48% 52% 49% 51% / 51% 49% 52% 48%;
+  background: radial-gradient(circle at 35% 32%, #E9CC84 0%, #D2AA55 45%, #9E7528 85%, #6E4D12 100%);
+  box-shadow:
+    0 4px 14px rgba(74, 15, 34, 0.28),
+    0 2px 4px rgba(74, 15, 34, 0.18),
+    inset 0 1px 2px rgba(255, 255, 255, 0.45),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+.wax-seal-surface {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #DDB663 0%, #C39943 55%, #8B651D 100%);
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.25),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.wax-seal-emboss-ring {
+  width: 82%;
+  height: 82%;
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 240, 195, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wax-seal-monogram {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #4A0F22;
+  text-shadow:
+    0 1px 0 rgba(255, 245, 210, 0.55),
+    0 -1px 0 rgba(0, 0, 0, 0.35);
+}
+
+.wax-seal-sheen {
+  position: absolute;
+  inset: -50%;
+  background: linear-gradient(115deg, transparent 38%, rgba(255, 255, 255, 0.55) 48%, transparent 58%);
+  transform: translateX(-100%);
+  animation: sealSheenSweep 3.2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s 1 forwards;
+}
+
+@keyframes sealSheenSweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* TAP TO OPEN Instruction */
+.living-open-prompt {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.living-open-prompt.prompt-hidden {
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+}
+
+.prompt-gold-accent {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--color-gold);
+  opacity: 0.85;
+}
+
+.accent-line {
+  display: inline-block;
+  width: 22px;
+  height: 1px;
+  background-color: var(--color-gold);
+}
+
+.accent-diamond {
+  font-size: 0.52rem;
+  line-height: 1;
+}
+
+.prompt-text {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-maroon);
+  font-weight: 600;
+  animation: promptGentleBreathe 2.8s ease-in-out infinite;
+}
+
+@keyframes promptGentleBreathe {
+  0%, 100% {
+    opacity: 0.72;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Responsive adjustments for mobile viewports */
+@media (max-width: 360px) {
+  .living-envelope-stage {
+    width: min(290px, 90vw);
+    height: 195px;
+  }
+  .living-wax-seal {
+    width: 50px;
+    height: 50px;
+  }
+  .wax-seal-monogram {
+    font-size: 0.85rem;
+  }
+  .card-couple-names {
+    font-size: 0.9rem;
+  }
+  .living-open-prompt {
+    margin-top: 1.5rem;
+  }
+}
+
+/* ==============================================================================
    3. SCENE ONE — FULL-SCREEN COUPLE OPENING
    ============================================================================== */
 .cinematic-hero-section {
