@@ -1,61 +1,58 @@
 import React from 'react';
-import { weddingConfig, isPlaceholder } from '../weddingConfig';
+import { weddingConfig } from '../weddingConfig';
 import { GoldDivider } from './OrnamentalIcons';
 
 /**
- * SECTION FOUR: VENUE
+ * SECTION FOUR: VENUE (ITALY)
  * 
- * Minimal, visually striking presentation of:
- * - Venue name
- * - Full venue address
- * - OPEN IN MAPS button with genuine Google Maps directions URL
- * - Disabled state with clear notification when address is unconfigured
+ * Features:
+ * - IMAGE 5: Large, cinematic photograph of the Italian coastal venue (amalfi-coast.jpg)
+ * - Preserves sunset, coastal architecture, sea, and romantic atmosphere
+ * - Venue name, address, and city in Italy
+ * - OPEN IN MAPS button opening genuine Google Maps directions
  */
 export function VenueSection() {
-  const { venueName, venueAddress } = weddingConfig;
-  const isAddressPlaceholder = isPlaceholder(venueAddress);
+  const { venueName, venueAddress, venueCity, images } = weddingConfig;
 
-  // Generate directions URL only if a valid address is configured
-  const mapsUrl = !isAddressPlaceholder
-    ? `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(venueAddress)}`
-    : null;
+  const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+    venueAddress
+  )}`;
 
   return (
-    <section id="venue" className="venue-section" aria-label="Wedding Venue">
-      <div className="invitation-container-narrow">
-        <span className="eyebrow-label">Location</span>
+    <section id="venue" className="venue-section" aria-label="Destination Venue">
+      <div className="invitation-container">
+        <span className="eyebrow-label">Destination Venue</span>
 
+        {/* IMAGE 5 — ITALIAN COASTAL VENUE PHOTOGRAPH (Large Cinematic Frame) */}
+        <div className="venue-cinematic-banner">
+          <div className="venue-cinematic-inner">
+            <img
+              src={images.venueLandscape}
+              alt={images.venueLandscapeAlt}
+              className="venue-landscape-img"
+              style={{ objectPosition: images.venuePosition }}
+              loading="lazy"
+            />
+            <div className="venue-cinematic-overlay" aria-hidden="true" />
+          </div>
+        </div>
+
+        {/* Venue Information Card */}
         <div className="venue-card">
           <h2 className="venue-title">{venueName}</h2>
-          <GoldDivider width={120} className="mb-4" />
+          <p className="venue-city-sub">{venueCity}</p>
+          <GoldDivider width={140} className="venue-divider" />
           <p className="venue-address">{venueAddress}</p>
 
-          {isAddressPlaceholder ? (
-            <div>
-              <button
-                type="button"
-                className="btn-luxury"
-                disabled
-                aria-disabled="true"
-                title="Address not configured in weddingConfig.js"
-              >
-                Open in Maps
-              </button>
-              <p className="venue-placeholder-notice">
-                Directions link will be enabled once <code>venueAddress</code> is configured in <code>src/weddingConfig.js</code>
-              </p>
-            </div>
-          ) : (
-            <a
-              href={mapsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-luxury"
-              aria-label={`Open directions to ${venueName} in Google Maps`}
-            >
-              Open in Maps
-            </a>
-          )}
+          <a
+            href={mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-luxury"
+            aria-label={`Open directions to ${venueName} in Google Maps`}
+          >
+            Open in Maps
+          </a>
         </div>
       </div>
     </section>

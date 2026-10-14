@@ -6,12 +6,12 @@ import { weddingConfig, getCoupleInitials } from '../weddingConfig';
  * 
  * Signature interaction:
  * Physical wedding stationery recreated digitally using CSS 3D transforms.
- * On tap or keyboard activation:
- * 1. Wax seal fades and scales down.
- * 2. Flap rotates open 180deg around top edge.
- * 3. Inside invitation card slides up.
- * 4. Card settles and scales toward viewport.
- * 5. Overlay fades out and scroll is restored.
+ * Features:
+ * - Refined paper texture
+ * - Folded triangular flap with realistic 3D perspective
+ * - Champagne-gold wax seal with couple's initials (V & A)
+ * - Inside invitation card sliding upward
+ * - Discreet TAP TO OPEN prompt
  */
 export function InvitationOpening({ isOpen, onOpen }) {
   const [animStage, setAnimStage] = useState('closed'); // 'closed' | 'opening' | 'scaling' | 'done'
@@ -41,7 +41,6 @@ export function InvitationOpening({ isOpen, onOpen }) {
       window.matchMedia &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches
     ) {
-      // Immediate reveal for users who prefer reduced motion
       setAnimStage('done');
       onOpen();
       return;
@@ -126,9 +125,9 @@ export function InvitationOpening({ isOpen, onOpen }) {
               <div className="letter-arch-frame">
                 <span className="letter-kicker">Wedding Invitation</span>
                 <div className="letter-names">
-                  <span>{weddingConfig.groom}</span>
+                  <span>{weddingConfig.groomShort || weddingConfig.groom}</span>
                   <span className="letter-amp">&amp;</span>
-                  <span>{weddingConfig.bride}</span>
+                  <span>{weddingConfig.brideShort || weddingConfig.bride}</span>
                 </div>
               </div>
             </div>

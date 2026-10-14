@@ -530,6 +530,34 @@ a:focus-visible {
   margin-bottom: 1.8rem;
 }
 
+.hero-image-arch-wrap {
+  width: 100%;
+  max-width: 320px;
+  height: 380px;
+  border-radius: 160px 160px 4px 4px;
+  border: 1.5px solid var(--color-gold);
+  padding: 6px;
+  background-color: #FAF4EE;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  margin-bottom: 1.8rem;
+}
+
+.hero-image-arch-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 154px 154px 2px 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-couple-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .hero-names-wrap {
   margin-bottom: 1.5rem;
 }
@@ -763,6 +791,81 @@ a:focus-visible {
   font-weight: 600;
 }
 
+/* Shared Journey Editorial Showcase (IMAGE 4) */
+.shared-journey-editorial-wrap {
+  margin-top: 4.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.editorial-frame {
+  width: 100%;
+  max-width: 720px;
+  background-color: #FAF4EE;
+  border: 1.5px solid var(--color-gold);
+  border-radius: 4px;
+  padding: 10px;
+  box-shadow: var(--shadow-card);
+  position: relative;
+}
+
+.editorial-frame::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(210, 170, 85, 0.3);
+  pointer-events: none;
+}
+
+.editorial-inner {
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+  border-radius: 2px;
+  position: relative;
+  background-color: #EFE4D8;
+}
+
+@media (max-width: 640px) {
+  .editorial-inner {
+    height: 320px;
+  }
+}
+
+.editorial-couple-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.editorial-caption-box {
+  padding: 1.5rem 1rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.editorial-kicker {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  font-weight: 600;
+  margin: 0.8rem 0 0.25rem;
+}
+
+.editorial-names {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  color: var(--color-maroon);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
 /* ==============================================================================
    6. PAGE SECTION THREE — INDIAN WEDDING CEREMONIES (STICKY STACK)
    ============================================================================== */
@@ -946,6 +1049,66 @@ a:focus-visible {
   padding: 6.5rem 1.5rem;
   position: relative;
   overflow: hidden;
+}
+
+.venue-cinematic-banner {
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto 2.5rem;
+  border: 1.5px solid var(--color-gold);
+  border-radius: 4px;
+  padding: 7px;
+  background-color: #FAF4EE;
+  box-shadow: var(--shadow-card);
+}
+
+.venue-cinematic-inner {
+  width: 100%;
+  height: 440px;
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+  background-color: #EFE4D8;
+}
+
+@media (max-width: 640px) {
+  .venue-cinematic-inner {
+    height: 300px;
+  }
+}
+
+.venue-landscape-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.venue-cinematic-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(23, 63, 53, 0.08) 0%,
+    transparent 50%,
+    rgba(74, 15, 34, 0.15) 100%
+  );
+  pointer-events: none;
+}
+
+.venue-city-sub {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  letter-spacing: 0.16em;
+  color: var(--color-gold);
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 0.8rem;
+}
+
+.venue-divider {
+  margin-bottom: 1.2rem;
+  color: var(--color-gold);
 }
 
 .venue-card {

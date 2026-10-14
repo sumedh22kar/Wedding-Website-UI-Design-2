@@ -1,56 +1,38 @@
 import React, { useState, useEffect } from 'react';
-import { weddingConfig, isPlaceholder } from '../weddingConfig';
+import { weddingConfig } from '../weddingConfig';
 import { MandalaOrnament } from './OrnamentalIcons';
 
 /**
  * SECTION ONE: THE HERO
  * 
- * Elegant composition featuring:
- * - Architectural gold arch framing the couple's names
- * - Groom's name, gold ampersand, Bride's name
- * - Wedding date, time, and venue location
- * - Live countdown (or graceful placeholder if date is not configured)
- * - Faint rotating non-religious geometric mandala behind the composition
+ * Emotional focal point of the opening experience:
+ * - IMAGE 3: First couple photograph (couple-home.jpg) in an architectural arch
+ * - Names Virat & Anushka positioned around the image without covering their faces
+ * - Destination venue location: Positano, Amalfi Coast, Italy
+ * - Wedding date and live countdown updating every second
+ * - Subtle rotating geometric mandala behind the composition
  */
 export function HeroSection() {
-  const { groom, bride, weddingDateTime, venueName, venueCity } = weddingConfig;
+  const {
+    groomShort,
+    brideShort,
+    weddingDateTime,
+    countdownTarget,
+    venueCity,
+    images,
+  } = weddingConfig;
 
-  // Countdown State
+  // Live Countdown State
   const [timeLeft, setTimeLeft] = useState({
-    days: '—',
-    hours: '—',
-    minutes: '—',
-    seconds: '—',
-    isConfigured: false,
+    days: '00',
+    hours: '00',
+    minutes: '00',
+    seconds: '00',
     hasPassed: false,
   });
 
   useEffect(() => {
-    // If the date is still a placeholder or empty, do not fabricate countdown
-    if (isPlaceholder(weddingDateTime)) {
-      setTimeLeft({
-        days: '—',
-        hours: '—',
-        minutes: '—',
-        seconds: '—',
-        isConfigured: false,
-        hasPassed: false,
-      });
-      return;
-    }
-
-    const targetDate = new Date(weddingDateTime).getTime();
-    if (isNaN(targetDate)) {
-      setTimeLeft({
-        days: '—',
-        hours: '—',
-        minutes: '—',
-        seconds: '—',
-        isConfigured: false,
-        hasPassed: false,
-      });
-      return;
-    }
+    const targetDate = new Date(countdownTarget).getTime();
 
     const calculateTime = () => {
       const now = new Date().getTime();
@@ -62,7 +44,6 @@ export function HeroSection() {
           hours: '00',
           minutes: '00',
           seconds: '00',
-          isConfigured: true,
           hasPassed: true,
         });
         return;
@@ -78,7 +59,6 @@ export function HeroSection() {
         hours: String(hours).padStart(2, '0'),
         minutes: String(minutes).padStart(2, '0'),
         seconds: String(seconds).padStart(2, '0'),
-        isConfigured: true,
         hasPassed: false,
       });
     };
@@ -86,36 +66,42 @@ export function HeroSection() {
     calculateTime();
     const interval = setInterval(calculateTime, 1000);
     return () => clearInterval(interval);
-  }, [weddingDateTime]);
-
-  // Venue location display line
-  const locationDisplay = !isPlaceholder(venueCity)
-    ? venueCity
-    : !isPlaceholder(venueName)
-    ? venueName
-    : null;
+  }, [countdownTarget]);
 
   return (
     <section id="hero" className="hero-section" aria-label="Wedding Invitation Hero">
       {/* Faint rotating non-religious geometric mandala */}
-      <div className="hero-mandala-wrap">
-        <MandalaOrnament size={560} />
+      <div className="hero-mandala-wrap" aria-hidden="true">
+        <MandalaOrnament size={620} />
       </div>
 
       <div className="hero-content">
-        {/* Architectural Gold Arch Frame */}
         <div className="hero-arch-frame">
           <span className="hero-kicker">Wedding Invitation</span>
 
+          {/* IMAGE 3 — FIRST COUPLE PHOTOGRAPH (Emotional Focal Point) */}
+          <div className="hero-image-arch-wrap">
+            <div className="hero-image-arch-inner">
+              <img
+                src={images.heroCouple}
+                alt={images.heroCoupleAlt}
+                className="hero-couple-img"
+                style={{ objectPosition: images.heroCouplePosition }}
+                loading="eager"
+              />
+            </div>
+          </div>
+
+          {/* Couple Names Positioned Around the Image (Never covering faces) */}
           <div className="hero-names-wrap">
-            <h1 className="hero-groom-name">{groom}</h1>
+            <h1 className="hero-groom-name">{groomShort}</h1>
             <span className="hero-ampersand" aria-hidden="true">&amp;</span>
-            <span className="hero-bride-name">{bride}</span>
+            <span className="hero-bride-name">{brideShort}</span>
           </div>
 
           <div className="hero-event-details">
             <p className="hero-date-time">{weddingDateTime}</p>
-            {locationDisplay && <p className="hero-location">{locationDisplay}</p>}
+            <p className="hero-location">{venueCity}</p>
           </div>
 
           {/* Live Countdown */}
@@ -139,12 +125,7 @@ export function HeroSection() {
               </div>
             </div>
 
-            {!timeLeft.isConfigured && (
-              <p className="countdown-placeholder-notice">
-                Wedding date to be announced · Set weddingDateTime in weddingConfig.js
-              </p>
-            )}
-            {timeLeft.isConfigured && timeLeft.hasPassed && (
+            {timeLeft.hasPassed && (
               <p className="countdown-placeholder-notice">
                 The celebration has commenced
               </p>
