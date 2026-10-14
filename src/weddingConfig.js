@@ -152,8 +152,8 @@ export const weddingConfig = {
 
   // Background Audio
   audio: {
-    trackTitle: 'Kudmayi',
-    src: '/music/Pritam_Sachet_Tandon_Amitabh_Bhattacharya_-_Kudmayi_From_Rocky_Aur_Rani_Kii_Prem_Kahaani_(mp3.pm).mp3',
+    trackTitle: 'Kudmayi (Sidharth & Kiara)',
+    src: '/music/kudmayi.mp3',
   },
 };
 

@@ -26,16 +26,24 @@ export function App() {
   const [isPlayingMusic, setIsPlayingMusic] = useState(false);
   const audioRef = useRef(null);
 
+  // Resilient audio instance manager
+  const getAudio = () => {
+    if (!audioRef.current) {
+      const audio = new Audio(weddingConfig.audio.src);
+      audio.loop = true;
+      audio.volume = 0.85;
+      audio.addEventListener('play', () => setIsPlayingMusic(true));
+      audio.addEventListener('pause', () => setIsPlayingMusic(false));
+      audioRef.current = audio;
+    }
+    return audioRef.current;
+  };
+
   // Play background celebration music
   const handleStartMusic = () => {
     try {
-      if (!audioRef.current) {
-        const audio = new Audio(weddingConfig.audio.src);
-        audio.loop = true;
-        audio.volume = 0.8;
-        audioRef.current = audio;
-      }
-      const playPromise = audioRef.current.play();
+      const audio = getAudio();
+      const playPromise = audio.play();
       if (playPromise !== undefined) {
         playPromise
           .then(() => setIsPlayingMusic(true))
@@ -49,19 +57,21 @@ export function App() {
     }
   };
 
+  // Explicit Toggle ON / OFF
   const handleToggleMusic = () => {
-    if (!audioRef.current) {
-      handleStartMusic();
-      return;
-    }
-    if (audioRef.current.paused) {
-      audioRef.current
-        .play()
-        .then(() => setIsPlayingMusic(true))
-        .catch(console.warn);
-    } else {
-      audioRef.current.pause();
-      setIsPlayingMusic(false);
+    try {
+      const audio = getAudio();
+      if (audio.paused) {
+        audio
+          .play()
+          .then(() => setIsPlayingMusic(true))
+          .catch((err) => console.warn('Audio play error:', err));
+      } else {
+        audio.pause();
+        setIsPlayingMusic(false);
+      }
+    } catch (e) {
+      console.warn('Audio toggle error:', e);
     }
   };
 
