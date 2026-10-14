@@ -24,18 +24,22 @@ export const weddingConfig = {
     invitationSubtitle: 'A Celebration of Love in the Pink City',
   },
 
-  // Color Tokens matching creative direction
+  // Color Tokens matching creative direction with rich, vibrant dark royal jewel tones
   colors: {
     royalPink: '#C75B78',
-    jaipurRose: '#D98B91',
-    deepMaroon: '#4A0F22',
+    jaipurRose: '#E87A90',
+    deepMaroon: '#3B0716',
+    velvetMaroon: '#240208',
     champagneGold: '#D2AA55',
+    brightGold: '#F5D77F',
     warmIvory: '#F8EEE9',
-    saffron: '#E6A83C',
-    deepPlum: '#48263F',
-    botanicalGreen: '#355C45',
-    terracotta: '#B9634A',
+    saffron: '#F59E0B',
+    deepPlum: '#26042E',
+    botanicalGreen: '#0D3822',
+    terracotta: '#D97706',
     goldGlint: '#FFE8A3',
+    midnightNavy: '#0B1124',
+    darkEmerald: '#071D12',
   },
 
   // Exactly Six High-Resolution Photographs
@@ -75,7 +79,7 @@ export const weddingConfig = {
     sealMonogramAlt: 'Royal Wax Seal Monogram S & K — Sidharth Malhotra & Kiara Advani',
   },
 
-  // The Four Indian Wedding Ceremonies
+  // The Four Indian Wedding Ceremonies — Vibrant, High-Impact Jewel Worlds
   ceremonies: {
     mehendi: {
       id: 'mehendi',
@@ -84,8 +88,11 @@ export const weddingConfig = {
       date: 'Thursday, 16th December 2026',
       time: '4:00 PM onwards',
       theme: 'Botanical World',
-      themeColor: '#355C45',
-      accentColor: '#D2AA55',
+      themeColor: '#071D12',
+      accentColor: '#10B981',
+      goldAccent: '#F5D77F',
+      gradient: 'linear-gradient(150deg, #071D12 0%, #0F3A24 55%, #05140C 100%)',
+      glow: 'rgba(16, 185, 129, 0.35)',
       description: 'An afternoon steeped in delicate henna patterns, fragrant mogra blossoms, and gentle sitar melodies.',
     },
     haldi: {
@@ -95,8 +102,11 @@ export const weddingConfig = {
       date: 'Friday, 17th December 2026',
       time: '10:30 AM onwards',
       theme: 'Marigold World',
-      themeColor: '#E6A83C',
-      accentColor: '#B9634A',
+      themeColor: '#381502',
+      accentColor: '#F59E0B',
+      goldAccent: '#FDE047',
+      gradient: 'linear-gradient(150deg, #381502 0%, #682905 55%, #240A01 100%)',
+      glow: 'rgba(245, 158, 11, 0.4)',
       description: 'A morning filled with fragrant turmeric paste, golden genda phool showers, and celebratory blessings.',
     },
     sangeet: {
@@ -106,8 +116,11 @@ export const weddingConfig = {
       date: 'Friday, 17th December 2026',
       time: '7:30 PM onwards',
       theme: 'Rhythm and Movement',
-      themeColor: '#48263F',
-      accentColor: '#D2AA55',
+      themeColor: '#1A0524',
+      accentColor: '#C084FC',
+      goldAccent: '#FBBF24',
+      gradient: 'linear-gradient(150deg, #1A0524 0%, #3B0952 55%, #100216 100%)',
+      glow: 'rgba(192, 132, 252, 0.4)',
       description: 'An evening of rhythmic folk beats, celebratory musical performances, and dancing under the stars.',
     },
     wedding: {
@@ -117,8 +130,11 @@ export const weddingConfig = {
       date: 'Saturday, 18th December 2026',
       time: '4:30 PM onwards',
       theme: 'Royal Architecture',
-      themeColor: '#4A0F22',
-      accentColor: '#D2AA55',
+      themeColor: '#2A040D',
+      accentColor: '#F43F5E',
+      goldAccent: '#F5D77F',
+      gradient: 'linear-gradient(150deg, #2A040D 0%, #52091B 55%, #160107 100%)',
+      glow: 'rgba(244, 63, 94, 0.45)',
       description: 'The sacred Saat Phere solemnised against a royal palace mandap bathed in twilight pink hues.',
     },
   },

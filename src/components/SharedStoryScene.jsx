@@ -9,17 +9,23 @@ gsap.registerPlugin(ScrollTrigger);
  * SCENE FOUR — THEIR SHARED STORY
  * 
  * Features:
- * - Grand palace gateway architecture
+ * - Grand palace gateway architecture in deep velvet wine & royal gold
  * - Centerpiece Photo 4: sidharth-kiara-royal.jpg (traditional wedding ceremony)
- * - Complementary Photo 5: sidharth-kiara-celebration.jpg (festive joy)
- * - 100% full opacity, vibrant contrast, solid paper background
- * - Heading: TWO LIVES. ONE BEAUTIFUL CELEBRATION.
+ * - Complementary Photo 5: sidharth-kiara-celebration.jpg (festive joy under lights)
+ * - Aggressive GSAP ScrollTrigger:
+ *   - Scrubbed scale and aperture expansion on the royal ceremony photo
+ *   - Parallax float on the celebration card
+ *   - Rotating gold royal crest
+ *   - Heading: TWO LIVES. ONE BEAUTIFUL CELEBRATION.
  */
 export function SharedStoryScene() {
   const { couple, images } = weddingConfig;
   const sectionRef = useRef(null);
+  const portalRef = useRef(null);
   const photoMainRef = useRef(null);
   const photoSideRef = useRef(null);
+  const typographyRef = useRef(null);
+  const crestRef = useRef(null);
 
   useEffect(() => {
     const prefersReduced =
@@ -29,34 +35,84 @@ export function SharedStoryScene() {
     if (prefersReduced) return;
 
     const ctx = gsap.context(() => {
-      // Gentle parallax on royal ceremony photograph
+      // Aperture / portal entrance scrub
       gsap.fromTo(
-        photoMainRef.current,
-        { y: '4%' },
+        portalRef.current,
+        { scale: 0.92, opacity: 0.8 },
         {
-          y: '-4%',
-          ease: 'none',
+          scale: 1,
+          opacity: 1,
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top bottom',
-            end: 'bottom top',
+            start: 'top 80%',
+            end: 'top 30%',
             scrub: 1,
           },
         }
       );
 
-      // Subtle float on celebration photograph
+      // Deep parallax on royal ceremony photograph
       gsap.fromTo(
-        photoSideRef.current,
-        { y: 20 },
+        photoMainRef.current,
+        { scale: 1.15, y: '-6%' },
         {
-          y: -15,
+          scale: 1.0,
+          y: '6%',
           ease: 'none',
           scrollTrigger: {
             trigger: sectionRef.current,
             start: 'top bottom',
             end: 'bottom top',
             scrub: 1.2,
+          },
+        }
+      );
+
+      // Float on celebration photograph
+      gsap.fromTo(
+        photoSideRef.current,
+        { y: 50, rotation: 3 },
+        {
+          y: -30,
+          rotation: -2,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1.5,
+          },
+        }
+      );
+
+      // Rotating gold crest on scroll
+      if (crestRef.current) {
+        gsap.to(crestRef.current, {
+          rotation: 360,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 2,
+          },
+        });
+      }
+
+      // Typography reveal
+      gsap.fromTo(
+        typographyRef.current,
+        { y: 40, opacity: 0.7 },
+        {
+          y: 0,
+          opacity: 1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: typographyRef.current,
+            start: 'top 85%',
+            end: 'top 50%',
+            scrub: 1,
           },
         }
       );
@@ -68,8 +124,8 @@ export function SharedStoryScene() {
   return (
     <section id="shared-story" ref={sectionRef} className="shared-story-scene" aria-label="Their Shared Story">
       <div className="shared-story-container">
-        {/* Grand Palace Architectural Gateway */}
-        <div className="palace-gateway-portal">
+        {/* Grand Palace Architectural Gateway in Deep Velvet Maroon */}
+        <div ref={portalRef} className="palace-gateway-portal dark-gateway-theme">
           <div className="gateway-dual-visual-grid">
             {/* Primary Centerpiece: Traditional Royal Ceremony (sidharth-kiara-royal.jpg) */}
             <div className="gateway-primary-arch">
@@ -82,11 +138,12 @@ export function SharedStoryScene() {
                   style={{ objectPosition: images.royalCeremonyPosition }}
                   loading="lazy"
                 />
+                <div className="arch-inner-gold-glow" aria-hidden="true" />
               </div>
             </div>
 
             {/* Complementary Celebratory Moment: Warm Festivities (sidharth-kiara-celebration.jpg) */}
-            <div ref={photoSideRef} className="gateway-celebration-card">
+            <div ref={photoSideRef} className="gateway-celebration-card dark-celebration-theme">
               <div className="celebration-photo-frame">
                 <img
                   src={images.celebrationCouple}
@@ -95,6 +152,7 @@ export function SharedStoryScene() {
                   style={{ objectPosition: images.celebrationPosition }}
                   loading="lazy"
                 />
+                <div className="celebration-sheen" aria-hidden="true" />
               </div>
               <div className="celebration-card-label">
                 <span className="label-gem">✦</span>
@@ -105,11 +163,11 @@ export function SharedStoryScene() {
         </div>
 
         {/* Narrative Typography Block */}
-        <div className="shared-story-typography">
+        <div ref={typographyRef} className="shared-story-typography dark-typography-theme">
           <div className="story-gold-crest" aria-hidden="true">
-            <span className="crest-branch left-branch">❧</span>
+            <span ref={crestRef} className="crest-monogram-rotating">✦</span>
             <span className="crest-monogram">{couple.monogram}</span>
-            <span className="crest-branch right-branch">☙</span>
+            <span className="crest-monogram-rotating">✦</span>
           </div>
 
           <h2 className="shared-story-headline">{couple.sharedHeadline}</h2>
@@ -119,7 +177,7 @@ export function SharedStoryScene() {
           </p>
 
           <div className="shared-story-signoff">
-            <span className="signoff-prefix">WITH LOVE,</span>
+            <span className="signoff-prefix">WITH LOVE &amp; GRATITUDE,</span>
             <p className="signoff-names">{couple.groomShort} &amp; {couple.brideShort}</p>
           </div>
         </div>
