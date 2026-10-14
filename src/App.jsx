@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import InvitationOpening from './components/InvitationOpening';
 import CinematicHero from './components/CinematicHero';
 import PortraitsSection from './components/PortraitsSection';
@@ -13,6 +13,7 @@ import WarmClosingSection from './components/WarmClosingSection';
  * 
  * Flow Sequence:
  * - Living Opening Handcrafted Envelope Experience (Interactive 3D Opening)
+ *   (Plays "Kudmayi" automatically when envelope is opened, no play/pause button shown)
  * 1. FULL-SCREEN COUPLE HERO (Image 1: couple-home.jpg)
  * 2. BRIDE AND GROOM PORTRAITS (Image 2: virat-portrait.jpg & Image 3: anushka-portrait.jpg)
  * 3. SHARED COUPLE MOMENT (Image 4: couple-garden.jpg + personal message)
@@ -22,6 +23,30 @@ import WarmClosingSection from './components/WarmClosingSection';
  */
 export function App() {
   const [isOpeningOpen, setIsOpeningOpen] = useState(true);
+  const audioRef = useRef(null);
+
+  // Play "Kudmayi" automatically when visitor opens the envelope
+  const handleStartMusic = () => {
+    try {
+      if (!audioRef.current) {
+        const audioSrc = encodeURI(
+          '/music/Pritam_Sachet_Tandon_Amitabh_Bhattacharya_-_Kudmayi_From_Rocky_Aur_Rani_Kii_Prem_Kahaani_(mp3.pm).mp3'
+        );
+        const audio = new Audio(audioSrc);
+        audio.loop = true;
+        audio.volume = 0.85;
+        audioRef.current = audio;
+      }
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((err) => {
+          console.warn('Audio playback waiting for interaction or error:', err);
+        });
+      }
+    } catch (e) {
+      console.warn('Audio play exception:', e);
+    }
+  };
 
   const handleOpeningComplete = () => {
     setIsOpeningOpen(false);
@@ -33,6 +58,7 @@ export function App() {
       {isOpeningOpen && (
         <InvitationOpening
           isOpen={isOpeningOpen}
+          onOpenStart={handleStartMusic}
           onComplete={handleOpeningComplete}
         />
       )}

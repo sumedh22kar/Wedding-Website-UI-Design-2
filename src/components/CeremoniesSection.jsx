@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { weddingConfig } from '../weddingConfig';
 import {
   MarigoldFallingPetals,
@@ -12,16 +12,33 @@ import {
 } from './CeremonyAnimations';
 
 /**
- * SCENE FOUR — THE INDIAN WEDDING CELEBRATIONS
+ * SCENE FOUR — THE INDIAN WEDDING CELEBRATIONS (3D INTERACTIVE CEREMONIES)
  * 
- * Four immersive ceremony scenes in exact order:
- * 1. Mehendi  (Deep green #173F35, live henna drawing animation with moving artist cone)
- * 2. Haldi    (Turmeric yellow #E5B92E, drifting marigold petals, garland clusters)
- * 3. Sangeet  (Deep plum #35203F, animated Indian Garba/Dandiya dancing couple & musical rhythm)
- * 4. Wedding  (Deep crimson #8E2036, animated royal bride & groom under mandap with sacred fire)
+ * Four immersive ceremony scenes with interactive 3D touch points:
+ * 1. Mehendi  (Live henna drawing animation + interactive henna bloom)
+ * 2. Haldi    (Drifting marigold petals + garland clusters)
+ * 3. Sangeet  (Animated Garba/Dandiya dancers + interactive Dandiya beat)
+ * 4. Wedding  (Royal bride & groom under mandap + interactive rose petal blessings)
  */
 export function CeremoniesSection() {
   const { mehendi, haldi, sangeet, wedding } = weddingConfig.ceremonies;
+  const [hennaBloomed, setHennaBloomed] = useState(false);
+  const [dandiyaCount, setDandiyaCount] = useState(0);
+  const [weddingBlessing, setWeddingBlessing] = useState(false);
+
+  const triggerHennaBloom = () => {
+    setHennaBloomed(true);
+    setTimeout(() => setHennaBloomed(false), 3500);
+  };
+
+  const triggerDandiyaBeat = () => {
+    setDandiyaCount((prev) => prev + 1);
+  };
+
+  const triggerWeddingBlessing = () => {
+    setWeddingBlessing(true);
+    setTimeout(() => setWeddingBlessing(false), 4000);
+  };
 
   return (
     <div className="ceremonies-film-sequence" aria-label="Wedding Celebrations">
@@ -34,7 +51,16 @@ export function CeremoniesSection() {
         aria-label="Mehendi Celebration"
       >
         {/* Live Henna Drawing Canvas with Moving Artist Cone */}
-        <div className="ceremony-animation-showcase mehendi-showcase" aria-hidden="true">
+        <div
+          className={`ceremony-animation-showcase mehendi-showcase ${
+            hennaBloomed ? 'henna-bloomed-glow' : ''
+          }`}
+          onClick={triggerHennaBloom}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => e.key === 'Enter' && triggerHennaBloom()}
+          title="Click to bloom henna gold sparkles"
+        >
           <MehendiDrawingAnimation />
         </div>
 
@@ -45,6 +71,16 @@ export function CeremoniesSection() {
           </span>
           <h2 className="ceremony-english-title">{mehendi.title}</h2>
           <GoldDivider width={130} />
+          
+          <button
+            type="button"
+            className="ceremony-interactive-btn mehendi-btn"
+            onClick={triggerHennaBloom}
+            aria-label="Bloom golden henna ornaments"
+          >
+            <span>{hennaBloomed ? '✦ Henna Blooming ✦' : 'Bloom Henna Motifs ✦'}</span>
+          </button>
+
           <div className="ceremony-time-meta">
             <p className="ceremony-date">{mehendi.date}</p>
             <p className="ceremony-time">{mehendi.time}</p>
@@ -61,7 +97,7 @@ export function CeremoniesSection() {
         aria-label="Haldi Celebration"
       >
         {/* Layered Falling Marigold Petals */}
-        <MarigoldFallingPetals count={16} />
+        <MarigoldFallingPetals count={18} />
 
         {/* Outer Corner Marigold Garland Clusters */}
         <div className="haldi-garland-top-left" aria-hidden="true">
@@ -94,7 +130,14 @@ export function CeremoniesSection() {
         aria-label="Sangeet Celebration"
       >
         {/* Animated Dandiya / Garba Dancing Couple */}
-        <div className="ceremony-animation-showcase sangeet-showcase" aria-hidden="true">
+        <div
+          className="ceremony-animation-showcase sangeet-showcase"
+          onClick={triggerDandiyaBeat}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => e.key === 'Enter' && triggerDandiyaBeat()}
+          title="Click to strike the Dandiya beat"
+        >
           <SangeetDancingCouple />
         </div>
 
@@ -105,6 +148,16 @@ export function CeremoniesSection() {
           </span>
           <h2 className="ceremony-english-title">{sangeet.title}</h2>
           <GoldDivider width={130} />
+
+          <button
+            type="button"
+            className="ceremony-interactive-btn sangeet-btn"
+            onClick={triggerDandiyaBeat}
+            aria-label="Strike festive Dandiya rhythm"
+          >
+            <span>Strike Dandiya Rhythm ♫ {dandiyaCount > 0 ? `(${dandiyaCount})` : ''}</span>
+          </button>
+
           <div className="ceremony-time-meta">
             <p className="ceremony-date">{sangeet.date}</p>
             <p className="ceremony-time">{sangeet.time}</p>
@@ -120,8 +173,32 @@ export function CeremoniesSection() {
         className="ceremony-film-scene scene-wedding"
         aria-label="The Wedding Ceremony"
       >
+        {/* Extra rose blessing petals when triggered */}
+        {weddingBlessing && (
+          <div className="wedding-extra-blessings" aria-hidden="true">
+            {Array.from({ length: 16 }).map((_, i) => (
+              <span
+                key={i}
+                className="blessing-extra-rose"
+                style={{
+                  left: `${(i * 6.2 + 3) % 94}%`,
+                  animationDelay: `${(i * 0.12) % 1.2}s`,
+                  animationDuration: `${3 + (i % 3) * 0.6}s`,
+                }}
+              />
+            ))}
+          </div>
+        )}
+
         {/* Animated Royal Indian Bride & Groom under Mandap */}
-        <div className="ceremony-animation-showcase wedding-showcase" aria-hidden="true">
+        <div
+          className="ceremony-animation-showcase wedding-showcase"
+          onClick={triggerWeddingBlessing}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => e.key === 'Enter' && triggerWeddingBlessing()}
+          title="Click to shower rose blessings"
+        >
           <WeddingRoyalCouple />
         </div>
 
@@ -132,6 +209,16 @@ export function CeremoniesSection() {
           </span>
           <h2 className="ceremony-english-title wedding-accent-title">{wedding.title}</h2>
           <GoldDivider width={150} />
+
+          <button
+            type="button"
+            className="ceremony-interactive-btn wedding-btn"
+            onClick={triggerWeddingBlessing}
+            aria-label="Shower royal rose blessings"
+          >
+            <span>{weddingBlessing ? '❀ Showering Blessings ❀' : 'Shower Rose Blessings ❀'}</span>
+          </button>
+
           <div className="ceremony-time-meta">
             <p className="ceremony-date">{wedding.date}</p>
             <p className="ceremony-time">{wedding.time}</p>
@@ -143,3 +230,4 @@ export function CeremoniesSection() {
 }
 
 export default CeremoniesSection;
+

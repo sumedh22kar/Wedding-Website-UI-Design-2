@@ -68,8 +68,12 @@ export const weddingConfig = {
       'https://www.google.com/maps/dir/?api=1&destination=Via+Panoramica%2C+84017+Positano+SA%2C+Amalfi+Coast%2C+Italy',
   },
 
-  // EXACT FIVE LOCAL PHOTOGRAPHS
+  // EXACT FIVE LOCAL PHOTOGRAPHS & LOGO
   images: {
+    // Logo — 3D Gold Wax Seal Monogram (V & A)
+    logoSeal: '/images/VA.png',
+    logoSealAlt: 'Royal Wax Seal Monogram V & A — Virat Kohli & Anushka Sharma',
+
     // Image 1 — Virat and Anushka together, warm indoor photograph (Hero Opening)
     heroCouple: '/images/couple-home.jpg',
     heroCoupleAlt: 'Virat Kohli and Anushka Sharma in an affectionate, intimate embrace',

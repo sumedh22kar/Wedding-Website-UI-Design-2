@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { weddingConfig } from '../weddingConfig';
 import { GoldDivider } from './FloralElements';
+import RoyalWaxSeal from './RoyalWaxSeal';
 
 /**
  * PREMIUM OPENING ANIMATION — THE LIVING WEDDING INVITATION
@@ -14,7 +15,7 @@ import { GoldDivider } from './FloralElements';
  * Phase 5 (1.50–2.35s): The card becomes the screen (VIRAT KOHLI & ANUSHKA SHARMA reveal, expands toward viewport)
  * Phase 6 (2.20–3.10s): Seamless handoff to existing full-screen couple hero
  */
-export function InvitationOpening({ isOpen, onComplete }) {
+export function InvitationOpening({ isOpen, onOpenStart, onComplete }) {
   // Animation phases: 'idle' | 'phase1-responding' | 'phase2-seal' | 'phase3-flap' | 'phase4-card' | 'phase5-expand' | 'complete'
   const [phase, setPhase] = useState('idle');
   const isActivatingRef = useRef(false);
@@ -34,6 +35,11 @@ export function InvitationOpening({ isOpen, onComplete }) {
   const handleActivate = () => {
     if (isActivatingRef.current || phase !== 'idle') return;
     isActivatingRef.current = true;
+
+    // Trigger Kudmayi wedding music on user interaction
+    if (onOpenStart) {
+      onOpenStart();
+    }
 
     // Check prefers-reduced-motion: reveal immediately
     if (
@@ -176,7 +182,13 @@ export function InvitationOpening({ isOpen, onComplete }) {
               <div className="invitation-card-border">
                 {/* Monogram Detail */}
                 <div className="card-monogram-tag">
-                  <span className="monogram-initials">V &amp; A</span>
+                  <img
+                    src="/images/VA.png"
+                    alt="Royal Monogram V & A"
+                    className="card-mini-seal-img"
+                    width={30}
+                    height={30}
+                  />
                 </div>
 
                 <div className="card-names-content">
@@ -221,15 +233,7 @@ export function InvitationOpening({ isOpen, onComplete }) {
               className={`living-wax-seal ${isSealReleasing ? 'seal-released' : ''}`}
               aria-hidden="true"
             >
-              <div className="wax-seal-outer-rim">
-                <div className="wax-seal-surface">
-                  <div className="wax-seal-emboss-ring">
-                    <span className="wax-seal-monogram">V &amp; A</span>
-                  </div>
-                  {/* Subtle directional initial sheen highlight */}
-                  <div className="wax-seal-sheen" />
-                </div>
-              </div>
+              <RoyalWaxSeal size={78} />
             </div>
           </div>
         </div>
