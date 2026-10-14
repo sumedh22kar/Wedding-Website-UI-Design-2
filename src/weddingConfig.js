@@ -2,101 +2,99 @@
  * ==============================================================================
  * CENTRAL WEDDING INVITATION CONFIGURATION
  * ==============================================================================
- * Conceptual Showcase: Virat Kohli & Anushka Sharma
- * Location: Amalfi Coast, Italy
- *
- * All five provided images are mapped locally and explicitly below.
+ * Cinematic Indian Wedding Invitation Experience
+ * Featuring: Virat Kohli & Anushka Sharma
+ * Location: Amalfi Coast, Italy (Conceptual Showcase)
  */
 
 export const weddingConfig = {
-  // Couple Information
-  groom: 'Virat Kohli',
-  groomShort: 'Virat',
-  bride: 'Anushka Sharma',
-  brideShort: 'Anushka',
+  // Couple Details
+  groom: 'VIRAT KOHLI',
+  groomShort: 'VIRAT',
+  groomRole: 'THE GROOM',
+  bride: 'ANUSHKA SHARMA',
+  brideShort: 'ANUSHKA',
+  brideRole: 'THE BRIDE',
 
-  // Wedding Date, Time, and Live Countdown Target
-  weddingDateTime: 'Saturday, 18th December 2026 · 4:30 PM',
-  countdownTarget: '2026-12-18T16:30:00',
+  // Scene Three: Shared Couple Message
+  coupleMessage:
+    'With the love and blessings of our families, we would be delighted to have you with us as we celebrate the beginning of a beautiful new chapter.',
+  coupleSignoff: 'WITH LOVE,',
+  coupleSignoffNames: 'VIRAT & ANUSHKA',
 
-  // Italian Destination Venue
-  venueName: 'Villa Bellissima Estate',
-  venueCity: 'Positano, Amalfi Coast · Italy',
-  venueAddress: 'Via Panoramica, 84017 Positano SA, Amalfi Coast, Italy',
+  // Final Scene: Warm Closing
+  closingEyebrow: 'WITH LOVE AND BLESSINGS',
+  closingNames: 'VIRAT & ANUSHKA',
 
-  // The Four Indian Wedding Ceremonies in exact sequence
-  mehendi: {
-    name: 'Mehendi',
-    hindiName: 'मेहंदी',
-    dateTime: 'Thursday, 16th December 2026 · 4:00 PM',
-  },
-  haldi: {
-    name: 'Haldi',
-    hindiName: 'हल्दी',
-    dateTime: 'Friday, 17th December 2026 · 10:30 AM',
-  },
-  sangeet: {
-    name: 'Sangeet',
-    hindiName: 'संगीत',
-    dateTime: 'Friday, 17th December 2026 · 7:30 PM',
-  },
-  wedding: {
-    name: 'Wedding',
-    hindiName: 'विवाह',
-    dateTime: 'Saturday, 18th December 2026 · 4:30 PM',
+  // Scene Four: The Four Indian Wedding Ceremonies
+  ceremonies: {
+    mehendi: {
+      id: 'mehendi',
+      title: 'MEHENDI',
+      hindiTitle: 'मेहंदी',
+      date: 'Thursday, 16th December 2026',
+      time: '4:00 PM onwards',
+    },
+    haldi: {
+      id: 'haldi',
+      title: 'HALDI',
+      hindiTitle: 'हल्दी',
+      date: 'Friday, 17th December 2026',
+      time: '10:30 AM onwards',
+    },
+    sangeet: {
+      id: 'sangeet',
+      title: 'SANGEET',
+      hindiTitle: 'संगीत',
+      date: 'Friday, 17th December 2026',
+      time: '7:30 PM onwards',
+    },
+    wedding: {
+      id: 'wedding',
+      title: 'THE WEDDING',
+      hindiTitle: 'विवाह',
+      date: 'Saturday, 18th December 2026',
+      time: '4:30 PM onwards',
+    },
   },
 
-  // THE 5 PROVIDED LOCAL IMAGES — MAPPED EXPLICITLY
+  // Scene Five: Destination Venue
+  venue: {
+    sectionHeading: 'THE CELEBRATION',
+    name: 'Villa Bellissima Estate',
+    address: 'Via Panoramica, 84017 Positano SA, Amalfi Coast, Italy',
+    locationNote: 'Positano, Amalfi Coast · Italy (Conceptual Venue Showcase)',
+    mapsUrl:
+      'https://www.google.com/maps/dir/?api=1&destination=Via+Panoramica%2C+84017+Positano+SA%2C+Amalfi+Coast%2C+Italy',
+  },
+
+  // EXACT FIVE LOCAL PHOTOGRAPHS
   images: {
-    // IMAGE 1 — VIRAT KOHLI SOLO PORTRAIT (Groom introduction)
+    // Image 1 — Virat and Anushka together, warm indoor photograph (Hero Opening)
+    heroCouple: '/images/couple-home.jpg',
+    heroCoupleAlt: 'Virat Kohli and Anushka Sharma in an affectionate, intimate embrace',
+    heroPosition: 'center 22%',
+
+    // Image 2 — Virat Kohli solo portrait (Groom Introduction)
     groomPortrait: '/images/virat-portrait.jpg',
     groomPortraitAlt: 'Virat Kohli solo portrait in tailored evening attire',
     groomPosition: 'center 20%',
 
-    // IMAGE 2 — ANUSHKA SHARMA SOLO PORTRAIT (Bride introduction)
+    // Image 3 — Anushka Sharma solo portrait (Bride Introduction)
     bridePortrait: '/images/anushka-portrait.jpg',
-    bridePortraitAlt: 'Anushka Sharma solo portrait in black blazer with golden sunlight',
+    bridePortraitAlt: 'Anushka Sharma solo portrait in black evening blazer with golden sunlight',
     bridePosition: 'center 18%',
 
-    // IMAGE 3 — FIRST COUPLE PHOTOGRAPH (Main hero focal point)
-    heroCouple: '/images/couple-home.jpg',
-    heroCoupleAlt: 'Virat Kohli and Anushka Sharma in an affectionate, intimate embrace',
-    heroCouplePosition: 'center 22%',
-
-    // IMAGE 4 — SECOND COUPLE PHOTOGRAPH (Shared moments editorial section)
+    // Image 4 — Second Virat and Anushka couple photograph (Shared Couple Section)
     sharedCouple: '/images/couple-garden.jpg',
     sharedCoupleAlt: 'Virat Kohli and Anushka Sharma together in garden setting, Anushka in ivory silk',
-    sharedCouplePosition: 'center 20%',
+    sharedPosition: 'center 20%',
 
-    // IMAGE 5 — ITALIAN COASTAL VENUE PHOTOGRAPH (Cinematic venue showcase)
-    venueLandscape: '/images/amalfi-coast.jpg',
-    venueLandscapeAlt: 'Sunset over dramatic Italian coastal cliffs and Mediterranean sea in Positano',
+    // Image 5 — Italian coastal sunset photograph (Destination Venue)
+    venueSunset: '/images/amalfi-coast.jpg',
+    venueSunsetAlt: 'Sunset over dramatic Italian coastal cliffs and Mediterranean sea in Positano',
     venuePosition: 'center 38%',
   },
-
-  // WhatsApp RSVP Contact Number (Country code + international number without '+')
-  whatsAppNumber: '919876543210',
 };
-
-/**
- * Computes initials for monogram / wax seal.
- */
-export function getCoupleInitials(groom, bride) {
-  const gInitial = groom && groom[0] ? groom[0].toUpperCase() : 'V';
-  const bInitial = bride && bride[0] ? bride[0].toUpperCase() : 'A';
-  return `${gInitial} & ${bInitial}`;
-}
-
-/**
- * Checks whether a field value is currently a placeholder or empty.
- */
-export function isPlaceholder(val) {
-  if (!val || typeof val !== 'string') return true;
-  const trimmed = val.trim();
-  if (trimmed === '') return true;
-  if (trimmed.startsWith('[') && trimmed.endsWith(']')) return true;
-  if (trimmed.toLowerCase().includes('placeholder')) return true;
-  return false;
-}
 
 export default weddingConfig;

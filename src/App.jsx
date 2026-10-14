@@ -1,64 +1,45 @@
-import React, { useState } from 'react';
-import InvitationOpening from './components/InvitationOpening';
-import HeroSection from './components/HeroSection';
-import CoupleSection from './components/CoupleSection';
-import CeremonyStack from './components/CeremonyStack';
-import VenueSection from './components/VenueSection';
-import RSVPSection from './components/RSVPSection';
-import ClosingSection from './components/ClosingSection';
+import React from 'react';
+import CinematicHero from './components/CinematicHero';
+import PortraitsSection from './components/PortraitsSection';
+import SharedCoupleSection from './components/SharedCoupleSection';
+import CeremoniesSection from './components/CeremoniesSection';
+import DestinationVenueSection from './components/DestinationVenueSection';
+import WarmClosingSection from './components/WarmClosingSection';
 
 /**
- * THE MODERN INDIAN WEDDING INVITATION
+ * CINEMATIC INDIAN WEDDING INVITATION EXPERIENCE
+ * Featuring: Virat Kohli & Anushka Sharma
  * 
- * Mobile-first, single-page wedding stationery experience.
- * Structure:
- * 1. Opening Envelope Animation (3D realistic stationery seal & card sequence)
- * 2. Section One: The Hero (Names in gold arch, date/time, live countdown)
- * 3. Section Two: The Couple (Balanced Groom and Bride architectural portraits)
- * 4. Section Three: The Four Indian Ceremonies (Mehendi, Haldi, Sangeet, Wedding)
- * 5. Section Four: Venue (Venue name, address, Google Maps directions)
- * 6. Section Five: RSVP (Attendance selection, WhatsApp message generation)
- * 7. Section Six: Closing (Groom name, gold divider, Bride name)
+ * Flow Sequence:
+ * 1. FULL-SCREEN COUPLE HERO (Image 1: couple-home.jpg)
+ * 2. BRIDE AND GROOM PORTRAITS (Image 2: virat-portrait.jpg & Image 3: anushka-portrait.jpg)
+ * 3. SHARED COUPLE MOMENT (Image 4: couple-garden.jpg + personal message)
+ * 4. INDIAN WEDDING CELEBRATIONS (Mehendi, Haldi, Sangeet, Wedding)
+ * 5. CINEMATIC DESTINATION VENUE (Image 5: amalfi-coast.jpg + Open in Maps)
+ * 6. ELEGANT CLOSING (WITH LOVE AND BLESSINGS / VIRAT & ANUSHKA)
  */
 export function App() {
-  const [isOpeningOpen, setIsOpeningOpen] = useState(true);
-
-  const handleOpenInvitation = () => {
-    setIsOpeningOpen(false);
-    const heroEl = document.getElementById('hero');
-    if (heroEl) {
-      heroEl.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
-    <div className="wedding-invitation-app">
-      {/* Signature 3D Opening Envelope Interaction */}
-      <InvitationOpening
-        isOpen={isOpeningOpen}
-        onOpen={handleOpenInvitation}
-      />
+    <div className="wedding-invitation-app cinematic-experience-root">
+      {/* SCENE ONE: FULL-SCREEN COUPLE OPENING */}
+      <CinematicHero />
 
-      {/* Main Wedding Invitation Document */}
       <main>
-        {/* Page Section One: The Hero */}
-        <HeroSection />
+        {/* SCENE TWO: INTRODUCING THE GROOM AND BRIDE */}
+        <PortraitsSection />
 
-        {/* Page Section Two: The Couple */}
-        <CoupleSection />
+        {/* SCENE THREE: THE COUPLE TOGETHER */}
+        <SharedCoupleSection />
 
-        {/* Page Section Three: The Four Indian Wedding Ceremonies */}
-        <CeremonyStack />
+        {/* SCENE FOUR: THE INDIAN WEDDING CELEBRATIONS */}
+        <CeremoniesSection />
 
-        {/* Page Section Four: Venue */}
-        <VenueSection />
-
-        {/* Page Section Five: RSVP */}
-        <RSVPSection />
+        {/* SCENE FIVE: THE DESTINATION VENUE */}
+        <DestinationVenueSection />
       </main>
 
-      {/* Page Section Six: Closing */}
-      <ClosingSection />
+      {/* FINAL SCENE: A WARM CLOSING */}
+      <WarmClosingSection />
     </div>
   );
 }
