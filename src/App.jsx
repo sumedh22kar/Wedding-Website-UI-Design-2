@@ -1,89 +1,63 @@
 import React, { useState } from 'react';
 import InvitationOpening from './components/InvitationOpening';
-import CoupleHero from './components/CoupleHero';
-import BrideGroomIntroduction from './components/BrideGroomIntroduction';
-import TheirJourney from './components/TheirJourney';
-import HaldiSection from './components/HaldiSection';
-import MehendiSection from './components/MehendiSection';
-import SangeetSection from './components/SangeetSection';
-import WeddingCeremonySection from './components/WeddingCeremonySection';
-import ReceptionSection from './components/ReceptionSection';
+import HeroSection from './components/HeroSection';
+import CoupleSection from './components/CoupleSection';
+import CeremonyStack from './components/CeremonyStack';
 import VenueSection from './components/VenueSection';
+import RSVPSection from './components/RSVPSection';
 import ClosingSection from './components/ClosingSection';
-import AmbientMusicPlayer from './components/AmbientMusicPlayer';
 
+/**
+ * THE MODERN INDIAN WEDDING INVITATION
+ * 
+ * Mobile-first, single-page wedding stationery experience.
+ * Structure:
+ * 1. Opening Envelope Animation (3D realistic stationery seal & card sequence)
+ * 2. Section One: The Hero (Names in gold arch, date/time, live countdown)
+ * 3. Section Two: The Couple (Balanced Groom and Bride architectural portraits)
+ * 4. Section Three: The Four Indian Ceremonies (Mehendi, Haldi, Sangeet, Wedding)
+ * 5. Section Four: Venue (Venue name, address, Google Maps directions)
+ * 6. Section Five: RSVP (Attendance selection, WhatsApp message generation)
+ * 7. Section Six: Closing (Groom name, gold divider, Bride name)
+ */
 export function App() {
-  // State for the invitation opening card overlay
   const [isOpeningOpen, setIsOpeningOpen] = useState(true);
 
   const handleOpenInvitation = () => {
     setIsOpeningOpen(false);
-    const heroElement = document.getElementById('hero');
-    if (heroElement) {
-      heroElement.scrollIntoView({ behavior: 'smooth' });
+    const heroEl = document.getElementById('hero');
+    if (heroEl) {
+      heroEl.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
     <div className="wedding-invitation-app">
-      {/* SECTION ONE: THE INVITATION OPENING */}
+      {/* Signature 3D Opening Envelope Interaction */}
       <InvitationOpening
         isOpen={isOpeningOpen}
         onOpen={handleOpenInvitation}
       />
 
-      {/* Floating Gentle Indian Wedding Music Control */}
-      <AmbientMusicPlayer />
-
+      {/* Main Wedding Invitation Document */}
       <main>
-        {/* SECTION TWO: THE COUPLE HERO */}
-        <CoupleHero />
+        {/* Page Section One: The Hero */}
+        <HeroSection />
 
-        {/* SECTION THREE: MEET THE BRIDE AND GROOM */}
-        <BrideGroomIntroduction />
+        {/* Page Section Two: The Couple */}
+        <CoupleSection />
 
-        {/* SECTION FOUR: THEIR JOURNEY */}
-        <TheirJourney />
+        {/* Page Section Three: The Four Indian Wedding Ceremonies */}
+        <CeremonyStack />
 
-        {/* SECTION FIVE: THE WEDDING CELEBRATIONS */}
-        <section
-          className="invitation-section celebrations-wrapper-section"
-          aria-label="Wedding celebration itinerary"
-        >
-          <div className="invitation-container">
-            <div className="celebrations-main-header">
-              <span className="section-eyebrow">SACRED TRADITIONS & RITUALS</span>
-              <h2>The Wedding Celebrations</h2>
-              <div className="traditional-motif" aria-hidden="true">
-                <i>𑁍</i>
-              </div>
-              <p className="celebrations-intro-text">
-                A joyous celebration of two families coming together across five cherished gatherings of music, traditions, and joyful beginnings.
-              </p>
-            </div>
-
-            {/* 1. Haldi */}
-            <HaldiSection />
-
-            {/* 2. Mehendi */}
-            <MehendiSection />
-
-            {/* 3. Sangeet */}
-            <SangeetSection />
-
-            {/* 4. Wedding Ceremony (Centerpiece) */}
-            <WeddingCeremonySection />
-
-            {/* 5. Reception */}
-            <ReceptionSection />
-          </div>
-        </section>
-
-        {/* SECTION SIX: A PLACE TO GATHER — DESTINATION VENUE */}
+        {/* Page Section Four: Venue */}
         <VenueSection />
+
+        {/* Page Section Five: RSVP */}
+        <RSVPSection />
       </main>
 
-      {/* SECTION SEVEN: A FINAL NOTE */}
+      {/* Page Section Six: Closing */}
       <ClosingSection />
     </div>
   );

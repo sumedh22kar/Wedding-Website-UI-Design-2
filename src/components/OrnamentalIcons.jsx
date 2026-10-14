@@ -1,181 +1,246 @@
 import React from 'react';
 
 /**
- * Reusable Indian Wedding Traditional SVG Motifs & Architectural Ornaments
+ * Pure non-religious Indian wedding ornamental SVG motifs.
+ * Features architectural arches, botanical leaves, marigold petals,
+ * ghungroo-inspired rhythm circles, and mandap geometric structures.
  */
 
-export function LotusIcon({ size = 28, color = 'currentColor', className = '' }) {
+// Subtle rotating geometric mandala (pure non-religious geometry)
+export function MandalaOrnament({ className = '', size = 520 }) {
   return (
     <svg
+      className={`mandala-ornament ${className}`}
       width={size}
       height={size}
-      viewBox="0 0 40 40"
+      viewBox="0 0 500 500"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={className}
       aria-hidden="true"
     >
-      <path
-        d="M20 5C20 14 14 22 7 24C12 24 18 20 20 12C22 20 28 24 33 24C26 22 20 14 20 5Z"
-        fill={color}
-        fillOpacity="0.85"
-      />
-      <path
-        d="M20 12C17 21 10 27 3 28C8 28 14 26 17 21C20 26 26 28 31 28C24 27 17 21 20 12Z"
-        fill={color}
-        fillOpacity="0.6"
-      />
-      <path
-        d="M20 22C18 27 12 32 6 34C11 34 16 32 18 28C20 32 25 34 30 34C24 32 18 27 20 22Z"
-        fill={color}
-        fillOpacity="0.45"
-      />
-      <circle cx="20" cy="35" r="2" fill={color} />
-    </svg>
-  );
-}
-
-export function DiyaFlame({ size = 26, color = '#ECA324', className = '' }) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 32 32"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-      aria-hidden="true"
-    >
-      {/* Diya Base */}
-      <path
-        d="M6 18C6 24 10 27 16 27C22 27 26 24 26 18C20 20 12 20 6 18Z"
-        fill="#C59B51"
-      />
-      <ellipse cx="16" cy="18" rx="10" ry="3.5" fill="#A87A32" />
+      <circle cx="250" cy="250" r="230" stroke="currentColor" strokeWidth="0.75" strokeDasharray="4 4" opacity="0.4" />
+      <circle cx="250" cy="250" r="195" stroke="currentColor" strokeWidth="1" opacity="0.6" />
+      <circle cx="250" cy="250" r="160" stroke="currentColor" strokeWidth="0.75" strokeDasharray="6 6" opacity="0.5" />
+      <circle cx="250" cy="250" r="120" stroke="currentColor" strokeWidth="1" opacity="0.7" />
+      <circle cx="250" cy="250" r="75" stroke="currentColor" strokeWidth="1" opacity="0.8" />
+      <circle cx="250" cy="250" r="30" stroke="currentColor" strokeWidth="1.2" opacity="0.9" />
       
-      {/* Flickering Flame */}
-      <path
-        className="flicker-flame"
-        d="M16 4C14 8 12 11 13 15C14 18 18 18 19 15C20 11 18 8 16 4Z"
-        fill="url(#diyaFlameGrad)"
-      />
-      <defs>
-        <radialGradient id="diyaFlameGrad" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#FFF7CC" />
-          <stop offset="40%" stopColor="#FFC837" />
-          <stop offset="100%" stopColor="#FF4B1F" />
-        </radialGradient>
-      </defs>
+      {/* 12-axis non-religious geometric petal lines */}
+      {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map((deg) => (
+        <g key={deg} transform={`rotate(${deg} 250 250)`}>
+          <line x1="250" y1="55" x2="250" y2="120" stroke="currentColor" strokeWidth="0.8" opacity="0.6" />
+          <path
+            d="M 250 120 Q 235 155 250 195 Q 265 155 250 120"
+            stroke="currentColor"
+            strokeWidth="0.75"
+            opacity="0.55"
+          />
+          <circle cx="250" cy="48" r="3" fill="currentColor" opacity="0.6" />
+          <path
+            d="M 250 195 Q 240 220 250 240 Q 260 220 250 195"
+            stroke="currentColor"
+            strokeWidth="0.75"
+            opacity="0.6"
+          />
+        </g>
+      ))}
     </svg>
   );
 }
 
-export function MandapArch({ className = '' }) {
+// Thin gold divider with small central diamond motif
+export function GoldDivider({ className = '', width = 160 }) {
   return (
-    <svg
-      viewBox="0 0 400 90"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-      style={{ width: '100%', maxWidth: '320px', height: 'auto', display: 'block', margin: '0 auto' }}
-      aria-hidden="true"
-    >
-      <path
-        d="M20 85 C60 85, 100 20, 200 12 C300 20, 340 85, 380 85"
-        stroke="url(#mandapGoldGrad)"
-        strokeWidth="2"
-        fill="none"
-      />
-      <path
-        d="M50 85 C85 85, 120 30, 200 24 C280 30, 315 85, 350 85"
-        stroke="url(#mandapGoldGrad)"
-        strokeWidth="1"
-        strokeDasharray="4 3"
-        fill="none"
-      />
-      {/* Crown Finial */}
-      <circle cx="200" cy="12" r="4" fill="#C59B51" />
-      <path d="M200 4 L203 10 L197 10 Z" fill="#C59B51" />
-      {/* Hanging Bell Details */}
-      <circle cx="100" cy="50" r="2.5" fill="#C59B51" />
-      <line x1="100" y1="42" x2="100" y2="50" stroke="#C59B51" strokeWidth="1" />
-      <circle cx="300" cy="50" r="2.5" fill="#C59B51" />
-      <line x1="300" y1="42" x2="300" y2="50" stroke="#C59B51" strokeWidth="1" />
-      <defs>
-        <linearGradient id="mandapGoldGrad" x1="0" y1="0" x2="400" y2="0" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#C59B51" stopOpacity="0.2" />
-          <stop offset="50%" stopColor="#ECC880" />
-          <stop offset="100%" stopColor="#C59B51" stopOpacity="0.2" />
-        </linearGradient>
-      </defs>
-    </svg>
+    <div className={`gold-divider-wrap ${className}`} aria-hidden="true">
+      <svg width={width} height="16" viewBox="0 0 160 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="8" x2="68" y2="8" stroke="currentColor" strokeWidth="0.75" />
+        <circle cx="73" cy="8" r="1.5" fill="currentColor" />
+        <polygon points="80,4 84,8 80,12 76,8" fill="currentColor" />
+        <circle cx="87" cy="8" r="1.5" fill="currentColor" />
+        <line x1="92" y1="8" x2="160" y2="8" stroke="currentColor" strokeWidth="0.75" />
+      </svg>
+    </div>
   );
 }
 
-export function CornerFlourish({ position = 'top-left', size = 38 }) {
-  const transforms = {
-    'top-left': 'none',
-    'top-right': 'scaleX(-1)',
-    'bottom-left': 'scaleY(-1)',
-    'bottom-right': 'scale(-1, -1)',
-  };
-
+// Botanical leaf & henna-inspired curve motif for Mehendi
+export function MehendiMotif({ className = '' }) {
   return (
     <svg
-      width={size}
-      height={size}
-      viewBox="0 0 50 50"
+      className={`ceremony-motif mehendi-motif ${className}`}
+      width="240"
+      height="120"
+      viewBox="0 0 240 120"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      style={{
-        position: 'absolute',
-        top: position.includes('top') ? '8px' : 'auto',
-        bottom: position.includes('bottom') ? '8px' : 'auto',
-        left: position.includes('left') ? '8px' : 'auto',
-        right: position.includes('right') ? '8px' : 'auto',
-        transform: transforms[position],
-        pointerEvents: 'none',
-        opacity: 0.75,
-      }}
       aria-hidden="true"
     >
       <path
-        d="M4 4 C18 4, 32 10, 38 24 C42 32, 44 42, 44 48"
-        stroke="#C59B51"
+        d="M 20 60 C 60 20, 100 20, 120 60 C 140 20, 180 20, 220 60"
+        stroke="currentColor"
         strokeWidth="1.2"
-        fill="none"
+        opacity="0.75"
       />
       <path
-        d="M4 14 C14 14, 24 18, 28 28 C30 34, 32 40, 32 46"
-        stroke="#C59B51"
-        strokeWidth="0.8"
-        strokeDasharray="2 2"
-        fill="none"
+        d="M 50 60 Q 65 35 90 45 Q 75 55 50 60"
+        stroke="currentColor"
+        strokeWidth="1"
+        fill="currentColor"
+        fillOpacity="0.15"
       />
-      <circle cx="8" cy="8" r="2.5" fill="#C59B51" />
-      <circle cx="4" cy="4" r="1.5" fill="#C59B51" />
+      <path
+        d="M 190 60 Q 175 35 150 45 Q 165 55 190 60"
+        stroke="currentColor"
+        strokeWidth="1"
+        fill="currentColor"
+        fillOpacity="0.15"
+      />
+      <path
+        d="M 120 60 Q 110 30 120 15 Q 130 30 120 60"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        fill="currentColor"
+        fillOpacity="0.2"
+      />
+      <circle cx="120" cy="10" r="2.5" fill="currentColor" />
+      <circle cx="80" cy="38" r="1.5" fill="currentColor" />
+      <circle cx="160" cy="38" r="1.5" fill="currentColor" />
+      <path
+        d="M 30 60 C 70 95, 170 95, 210 60"
+        stroke="currentColor"
+        strokeWidth="0.8"
+        strokeDasharray="3 3"
+        opacity="0.5"
+      />
     </svg>
   );
 }
 
-export function PaisleyMotif({ size = 32, color = '#6B8369' }) {
+// Marigold floral & petal garland motif for Haldi
+export function HaldiMotif({ className = '' }) {
   return (
     <svg
-      width={size}
-      height={size}
-      viewBox="0 0 36 36"
+      className={`ceremony-motif haldi-motif ${className}`}
+      width="240"
+      height="120"
+      viewBox="0 0 240 120"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
+      {/* Gentle garland curve */}
       <path
-        d="M18 4 C24 8, 30 16, 26 24 C22 32, 10 32, 8 22 C6 14, 12 8, 14 6 C15 5, 17 3, 18 4 Z"
-        stroke={color}
-        strokeWidth="1.5"
-        fill="none"
+        d="M 15 40 Q 120 95 225 40"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        opacity="0.65"
       />
-      <circle cx="18" cy="20" r="4" fill={color} fillOpacity="0.35" />
-      <path d="M18 16 C20 18, 21 22, 18 24" stroke={color} strokeWidth="1" strokeLinecap="round" />
+      {/* Stylized marigold blossoms along the garland */}
+      {[45, 85, 120, 155, 195].map((cx, i) => {
+        const cy = i === 2 ? 68 : i === 1 || i === 3 ? 60 : 48;
+        return (
+          <g key={cx} transform={`translate(${cx}, ${cy})`}>
+            <circle cx="0" cy="0" r="10" stroke="currentColor" strokeWidth="0.8" fill="currentColor" fillOpacity="0.18" />
+            <circle cx="0" cy="0" r="5" stroke="currentColor" strokeWidth="1" />
+            <circle cx="0" cy="0" r="1.5" fill="currentColor" />
+            {/* Fine petal accents */}
+            {[0, 45, 90, 135, 180, 225, 270, 315].map((a) => (
+              <line
+                key={a}
+                x1="0"
+                y1="0"
+                x2={12 * Math.cos((a * Math.PI) / 180)}
+                y2={12 * Math.sin((a * Math.PI) / 180)}
+                stroke="currentColor"
+                strokeWidth="0.6"
+                opacity="0.75"
+              />
+            ))}
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
+// Ghungroo rhythm dots and musical geometric circles for Sangeet
+export function SangeetMotif({ className = '' }) {
+  return (
+    <svg
+      className={`ceremony-motif sangeet-motif ${className}`}
+      width="240"
+      height="120"
+      viewBox="0 0 240 120"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <circle cx="120" cy="60" r="42" stroke="currentColor" strokeWidth="1" opacity="0.6" />
+      <circle cx="120" cy="60" r="28" stroke="currentColor" strokeWidth="0.75" strokeDasharray="3 3" opacity="0.7" />
+      <circle cx="120" cy="60" r="14" stroke="currentColor" strokeWidth="1.2" opacity="0.8" />
+      <circle cx="120" cy="60" r="3" fill="currentColor" />
+      
+      {/* Rhythm dots around concentric rings */}
+      {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map((deg) => {
+        const rad = (deg * Math.PI) / 180;
+        const x = 120 + 42 * Math.cos(rad);
+        const y = 60 + 42 * Math.sin(rad);
+        return <circle key={deg} cx={x} cy={y} r="2" fill="currentColor" opacity="0.85" />;
+      })}
+
+      {/* Flanking rhythmic wave lines */}
+      <path
+        d="M 20 60 Q 40 45 60 60 T 100 60"
+        stroke="currentColor"
+        strokeWidth="1"
+        opacity="0.5"
+      />
+      <path
+        d="M 140 60 Q 180 75 200 60 T 220 60"
+        stroke="currentColor"
+        strokeWidth="1"
+        opacity="0.5"
+      />
+    </svg>
+  );
+}
+
+// Architectural Mandap-inspired structural arch for Wedding
+export function MandapArchMotif({ className = '' }) {
+  return (
+    <svg
+      className={`ceremony-motif wedding-motif ${className}`}
+      width="260"
+      height="130"
+      viewBox="0 0 260 130"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      {/* Outer symmetrical mandap arch */}
+      <path
+        d="M 30 120 L 30 65 Q 30 20 130 20 Q 230 20 230 65 L 230 120"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        opacity="0.85"
+      />
+      {/* Inner arch */}
+      <path
+        d="M 45 120 L 45 70 Q 45 35 130 35 Q 215 35 215 70 L 215 120"
+        stroke="currentColor"
+        strokeWidth="0.75"
+        strokeDasharray="4 4"
+        opacity="0.65"
+      />
+      {/* Central apex finial */}
+      <circle cx="130" cy="12" r="3.5" fill="currentColor" />
+      <polygon points="130,4 133,10 127,10" fill="currentColor" />
+      {/* Small corner rosettes */}
+      <circle cx="45" cy="70" r="2.5" fill="currentColor" opacity="0.8" />
+      <circle cx="215" cy="70" r="2.5" fill="currentColor" opacity="0.8" />
+      {/* Base pedestals */}
+      <line x1="20" y1="120" x2="55" y2="120" stroke="currentColor" strokeWidth="1.5" />
+      <line x1="205" y1="120" x2="240" y2="120" stroke="currentColor" strokeWidth="1.5" />
     </svg>
   );
 }

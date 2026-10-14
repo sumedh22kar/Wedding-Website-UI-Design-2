@@ -1,116 +1,153 @@
-import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles } from 'lucide-react';
-import { CornerFlourish, LotusIcon } from './OrnamentalIcons';
-import weddingConfig from '../weddingConfig';
+import React, { useState, useEffect, useRef } from 'react';
+import { weddingConfig, getCoupleInitials } from '../weddingConfig';
 
+/**
+ * SECTION: OPENING ENVELOPE ANIMATION
+ * 
+ * Signature interaction:
+ * Physical wedding stationery recreated digitally using CSS 3D transforms.
+ * On tap or keyboard activation:
+ * 1. Wax seal fades and scales down.
+ * 2. Flap rotates open 180deg around top edge.
+ * 3. Inside invitation card slides up.
+ * 4. Card settles and scales toward viewport.
+ * 5. Overlay fades out and scroll is restored.
+ */
 export function InvitationOpening({ isOpen, onOpen }) {
-  if (!isOpen) return null;
+  const [animStage, setAnimStage] = useState('closed'); // 'closed' | 'opening' | 'scaling' | 'done'
+  const isOpeningRef = useRef(false);
+  const initials = getCoupleInitials(weddingConfig.groom, weddingConfig.bride);
+
+  // Lock scrolling when overlay is active
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
+  // Handle opening sequence
+  const handleActivate = () => {
+    if (isOpeningRef.current || !isOpen) return;
+    isOpeningRef.current = true;
+
+    // Check for prefers-reduced-motion
+    if (
+      typeof window !== 'undefined' &&
+      window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
+      // Immediate reveal for users who prefer reduced motion
+      setAnimStage('done');
+      onOpen();
+      return;
+    }
+
+    // Step 1: Seal fades and flap begins rotating
+    setAnimStage('opening');
+
+    // Step 2: Card settles, then begins scaling into view (~2.1s)
+    const scaleTimer = setTimeout(() => {
+      setAnimStage('scaling');
+    }, 2100);
+
+    // Step 3: Complete transition to main invitation (~3.1s)
+    const completeTimer = setTimeout(() => {
+      setAnimStage('done');
+      onOpen();
+    }, 3100);
+
+    // Failsafe timer: ensure user is never trapped behind overlay
+    const failSafeTimer = setTimeout(() => {
+      if (isOpeningRef.current) {
+        setAnimStage('done');
+        onOpen();
+      }
+    }, 4500);
+
+    return () => {
+      clearTimeout(scaleTimer);
+      clearTimeout(completeTimer);
+      clearTimeout(failSafeTimer);
+    };
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+      e.preventDefault();
+      handleActivate();
+    }
+  };
+
+  if (!isOpen && animStage === 'done') {
+    return null;
+  }
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          className="opening-overlay"
-          initial={{ opacity: 1 }}
-          exit={{
-            opacity: 0,
-            transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
-          }}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Royal Indian Wedding Invitation Card"
+    <div
+      className={`envelope-overlay ${!isOpen || animStage === 'done' ? 'overlay-hidden' : ''}`}
+      aria-modal="true"
+      role="dialog"
+      aria-label="Wedding Invitation Envelope"
+      onClick={handleActivate}
+    >
+      <button
+        type="button"
+        className="envelope-button-wrap"
+        onClick={handleActivate}
+        onKeyDown={handleKeyDown}
+        aria-label="Tap or press Enter to open wedding invitation"
+        disabled={animStage !== 'closed'}
+        tabIndex={0}
+      >
+        <div
+          className={`envelope-3d-stage ${
+            animStage === 'opening' || animStage === 'scaling' ? 'is-animating' : ''
+          } ${animStage === 'scaling' ? 'is-scaling-to-view' : ''}`}
         >
-          {/* Royal Envelope Card */}
-          <motion.div
-            className="opening-envelope-box"
-            initial={{ opacity: 0, scale: 0.92, y: 30 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{
-              opacity: 0,
-              scale: 0.94,
-              y: -40,
-              transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
-            }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          >
-            {/* 4 Gold Foil Corner Flourishes */}
-            <CornerFlourish position="top-left" size={44} />
-            <CornerFlourish position="top-right" size={44} />
-            <CornerFlourish position="bottom-left" size={44} />
-            <CornerFlourish position="bottom-right" size={44} />
+          {/* Main Envelope Body */}
+          <div className="envelope-box">
+            {/* Top Flap with 3D rotateX */}
+            <div className="envelope-flap" aria-hidden="true" />
 
-            {/* Sacred Vedic Auspicious Blessing */}
-            <div className="vedic-blessing" aria-hidden="true">
-              ॥ श्री गणेशाय नमः ॥
-            </div>
-
-            {/* Royal Gold Wax Seal with Monogram */}
-            <motion.div
-              className="royal-wax-seal"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.96 }}
-              onClick={onOpen}
-              title="Tap to unseal invitation"
-            >
-              <div className="seal-outer-ring" />
-              <div className="seal-inner-crest">
-                <LotusIcon size={20} color="#C59B51" />
-                <span className="seal-monogram">V <span>&</span> A</span>
+            {/* Wax Seal placed over flap fold */}
+            <div className="wax-seal" aria-hidden="true">
+              <div className="wax-seal-inner">
+                <span className="wax-seal-initials">{initials}</span>
               </div>
-            </motion.div>
-
-            {/* Headings */}
-            <p className="opening-eyebrow">
-              {weddingConfig.couple.openingEyebrow}
-            </p>
-
-            <h1 className="opening-heading">
-              An invitation to celebrate<br />
-              <em>a beautiful beginning</em>
-            </h1>
-
-            <div className="traditional-motif" aria-hidden="true">
-              <i>𑁍</i>
             </div>
 
-            {/* Shimmering Metallic Gold Couple Name */}
-            <div className="opening-names-wrapper">
-              <span className="opening-couple-gold">
-                Virat <em>&</em> Anushka
-              </span>
+            {/* Inside Invitation Card */}
+            <div className="envelope-letter-card" aria-hidden="true">
+              <div className="letter-arch-frame">
+                <span className="letter-kicker">Wedding Invitation</span>
+                <div className="letter-names">
+                  <span>{weddingConfig.groom}</span>
+                  <span className="letter-amp">&amp;</span>
+                  <span>{weddingConfig.bride}</span>
+                </div>
+              </div>
             </div>
 
-            <p className="opening-family-invitation">
-              Together with our parents, we warmly invite you to be part of our most cherished celebration.
-            </p>
-
-            {/* Unseal & Open Button */}
-            <div className="opening-actions">
-              <button
-                type="button"
-                className="btn-gold-royal"
-                onClick={onOpen}
-                aria-label="Open the wedding invitation"
-              >
-                <Sparkles size={16} className="btn-sparkle-icon" />
-                <span>OPEN OUR INVITATION</span>
-                <Sparkles size={16} className="btn-sparkle-icon" />
-              </button>
-
-              <button
-                type="button"
-                className="opening-skip-btn"
-                onClick={onOpen}
-                aria-label="Skip animation and enter invitation directly"
-              >
-                Scroll to celebration details ↓
-              </button>
+            {/* Front Pocket Folds (Left, Right, Bottom) */}
+            <div className="envelope-pocket-front" aria-hidden="true">
+              <div className="pocket-fold-left" />
+              <div className="pocket-fold-right" />
+              <div className="pocket-fold-bottom" />
             </div>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+          </div>
+        </div>
+
+        {/* Discreet Tap to Open instruction */}
+        <span className="tap-to-open-label" aria-hidden="true">
+          Tap to Open
+        </span>
+      </button>
+    </div>
   );
 }
 
