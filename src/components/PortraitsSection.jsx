@@ -8,8 +8,8 @@ import { weddingConfig } from '../weddingConfig';
  * - Interactive 3D spatial tilt tracking cursor/touch position
  * - Dynamic specular champagne-gold light sheen following pointer
  * - Two tall, refined architectural arch frames with forward depth layers
- * - Image 2: Virat Kohli solo portrait + VIRAT KOHLI + THE GROOM
- * - Image 3: Anushka Sharma solo portrait + ANUSHKA SHARMA + THE BRIDE
+ * - Image 2: Sidharth Malhotra solo portrait + SIDHARTH MALHOTRA + THE GROOM
+ * - Image 3: Kiara Advani solo portrait + KIARA ADVANI + THE BRIDE
  */
 function ArchPortrait3D({ src, alt, objectPosition, name, role, isGroom }) {
   const cardRef = useRef(null);
@@ -120,7 +120,7 @@ export function PortraitsSection() {
     <section className="portraits-section" aria-label="Meet the Groom and Bride">
       <div className="invitation-container">
         <div className="portraits-editorial-grid">
-          {/* VIRAT KOHLI — THE GROOM (Image 2) */}
+          {/* SIDHARTH MALHOTRA — THE GROOM (Image 2) */}
           <ArchPortrait3D
             src={images.groomPortrait}
             alt={images.groomPortraitAlt}
@@ -130,7 +130,7 @@ export function PortraitsSection() {
             isGroom={true}
           />
 
-          {/* ANUSHKA SHARMA — THE BRIDE (Image 3) */}
+          {/* KIARA ADVANI — THE BRIDE (Image 3) */}
           <ArchPortrait3D
             src={images.bridePortrait}
             alt={images.bridePortraitAlt}

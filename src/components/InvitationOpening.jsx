@@ -5,14 +5,14 @@ import RoyalWaxSeal from './RoyalWaxSeal';
 
 /**
  * PREMIUM OPENING ANIMATION — THE LIVING WEDDING INVITATION
- * Featuring: Virat Kohli & Anushka Sharma
+ * Featuring: Sidharth Malhotra & Kiara Advani
  * 
  * 6-Phase Precise Motion Timeline (~3.0s total):
  * Phase 1 (0.00–0.25s): The invitation responds (instruction fades, warm glow intensifies, envelope settles)
  * Phase 2 (0.20–0.55s): The wax seal releases (subtle lift, scale-down, smooth fade without explosion)
  * Phase 3 (0.40–1.05s): The envelope flap opens (true 3D rotateX backward, revealing maroon inner lining)
  * Phase 4 (0.75–1.55s): The invitation card emerges (slides upward from inside envelope pocket, settles in center)
- * Phase 5 (1.50–2.35s): The card becomes the screen (VIRAT KOHLI & ANUSHKA SHARMA reveal, expands toward viewport)
+ * Phase 5 (1.50–2.35s): The card becomes the screen (SIDHARTH MALHOTRA & KIARA ADVANI reveal, expands toward viewport)
  * Phase 6 (2.20–3.10s): Seamless handoff to existing full-screen couple hero
  */
 export function InvitationOpening({ isOpen, onOpenStart, onComplete }) {
@@ -156,7 +156,7 @@ export function InvitationOpening({ isOpen, onOpenStart, onComplete }) {
         className={`living-envelope-button ${isInteracted ? 'button-active' : ''}`}
         onClick={handleActivate}
         onKeyDown={handleKeyDown}
-        aria-label="Tap to open wedding invitation from Virat Kohli and Anushka Sharma"
+        aria-label="Tap to open wedding invitation from Sidharth Malhotra and Kiara Advani"
         disabled={isInteracted}
         tabIndex={0}
       >
@@ -183,8 +183,8 @@ export function InvitationOpening({ isOpen, onOpenStart, onComplete }) {
                 {/* Monogram Detail */}
                 <div className="card-monogram-tag">
                   <img
-                    src="/images/VA.png"
-                    alt="Royal Monogram V & A"
+                    src="/images/SK-seal.svg"
+                    alt="Royal Monogram S & K"
                     className="card-mini-seal-img"
                     width={30}
                     height={30}

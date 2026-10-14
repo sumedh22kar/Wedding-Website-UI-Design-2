@@ -1,40 +1,35 @@
-# Wedding Agency Website UI Design
+# Wedding-Website-UI-Design-2
 
-A warm, responsive React + Vite single-page wedding invitation and agency concept using luxury editorial aesthetics and ambient interactions.
+# Royal Jaipur: Cinematic Wedding Invitation
+A luxury, scroll-driven interactive Indian wedding invitation for **Sidharth Malhotra & Kiara Advani** in **Jaipur, Rajasthan, India**.
 
-## Requirements
-- Node.js 20.19+ or 22.12+ recommended
-- npm
+Inspired by cinematic motion design and visual storytelling (pacing, depth, transitions, continuous world layering).
 
-## Run locally
+## Features
+- **Continuous 6-Layer Ambient World**: Stable base environment featuring Nahargarh hill contours, palace chhatris silhouettes, and floating micro-particles.
+- **Scene 1 — Royal Stationery Envelope Reveal**: 3D interactive envelope with burgundy & gold S & K royal wax seal monogram and smooth unsealing animation.
+- **Scene 2 — The Hero World**: Fullscreen opening portrait of Sidharth & Kiara framed in ambient sunset lighting.
+- **Scene 3 — Individual Introductions**: Sidharth Malhotra (वर / The Groom) and Kiara Advani (वधू / The Bride) framed in traditional Rajasthani Jharokha palace arches.
+- **Scene 4 — Their Shared Story**: *"TWO LIVES. ONE BEAUTIFUL CELEBRATION."* featuring royal ceremony and celebration photographs.
+- **Scene 5 — The Celebrations**: Distinct themed chapters for **Mehendi** (Botanical World), **Haldi** (Marigold World), **Sangeet** (Rhythm & Movement), and **The Wedding** (Royal Architecture Mandap).
+- **Scene 6 — The Destination**: Sunset showcase of Jal Mahal Palace, Amber, Jaipur with verified coordinates and one-tap Google Maps navigation.
+- **Scene 7 — Final Composition**: Royal closing frame with couple monogram and interactive blessing petal showers.
+- **Ambient Sitar & Wedding Music Controller**: Floating audio disc controller with soundwave indicator and playback state handling.
+
+## Tech Stack
+- **React 19 + Vite 8**
+- **GSAP + ScrollTrigger** (for coordinated scroll-linked timelines & lifecycle-safe context)
+- **Vanilla CSS** (Fluid clamp typography, rich Rajasthani color tokens, 3D wax seals, and mobile-first responsiveness)
+
+## Local Development
 ```bash
 npm install
 npm run dev
 ```
-Open the local URL printed by Vite (usually http://localhost:5173).
 
-## Production build
+## Production Build
 ```bash
 npm run build
 npm run preview
 ```
 
-## Image mapping
-- `public/images/amalfi-coast.jpg` — hero atmosphere and concept location
-- `public/images/couple-garden.jpg` — couple section
-- `public/images/couple-home.jpg` — celebration section
-- `public/images/anushka-portrait.jpg` — bride portrait
-- `public/images/virat-portrait.jpg` — groom portrait
-
-## Important demo notes
-- The Amalfi Coast location is illustrative, not a claim about the couple's actual wedding venue.
-- RSVP currently runs client-side only and does not send or store responses on a server.
-- Wedding date, event details and venue information are placeholders.
-- This is an unofficial design concept, not an official invitation or endorsement.
-
-## Next production steps
-1. Add backend/database persistence for RSVPs.
-2. Replace placeholder event data with verified details or fictional demo details.
-3. Add a real calendar event and venue directions.
-4. Optimize image sizes and self-host fonts for production.
-5. Add privacy notice and consent before collecting guest details.

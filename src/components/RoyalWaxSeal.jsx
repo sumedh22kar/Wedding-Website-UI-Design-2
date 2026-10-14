@@ -2,21 +2,21 @@ import React from 'react';
 import { weddingConfig } from '../weddingConfig';
 
 /**
- * ROYAL WAX SEAL MONOGRAM COMPONENT — VIRAT & ANUSHKA (V & A)
+ * ROYAL WAX SEAL MONOGRAM COMPONENT — SIDHARTH & KIARA (S & K)
  * 
  * Features:
- * - Uses the bespoke high-resolution 3D gold wax seal logo from `/images/VA.png`
+ * - Bespoke high-resolution 3D gold wax seal logo for Sidharth & Kiara (`S & K`)
  * - Hand-poured molten wax perimeter with natural fluid contours
  * - Stamped brass die basin with 3D beaded Motimala rim
- * - Deep maroon debossed 'V & A' monogram with ornamental ampersand flourish
+ * - Deep royal debossed 'S & K' monogram with ornamental ampersand flourish
  * - Shimmering directional metallic sheen highlight sweep
  * - Tactile hover elevation and press feedback
  */
 export function RoyalWaxSeal({ size = 78, className = '', showSheen = true }) {
-  const logoSrc = weddingConfig?.images?.logoSeal || '/images/VA.png';
+  const logoSrc = weddingConfig?.images?.logoSeal || '/images/SK-seal.svg';
   const logoAlt =
     weddingConfig?.images?.logoSealAlt ||
-    'Royal Wax Seal Monogram V & A — Virat Kohli & Anushka Sharma';
+    'Royal Wax Seal Monogram S & K — Sidharth Malhotra & Kiara Advani';
 
   return (
     <div
@@ -25,7 +25,7 @@ export function RoyalWaxSeal({ size = 78, className = '', showSheen = true }) {
         width: `${size}px`,
         height: `${size}px`,
       }}
-      aria-label="Royal Wax Seal Monogram — Virat & Anushka"
+      aria-label="Royal Wax Seal Monogram — Sidharth & Kiara"
       role="img"
     >
       <img

@@ -1,32 +1,81 @@
 /**
  * ==============================================================================
- * CENTRAL WEDDING INVITATION CONFIGURATION
+ * CENTRAL WEDDING INVITATION CONFIGURATION — ROYAL JAIPUR CINEMATIC EXPERIENCE
  * ==============================================================================
- * Cinematic Indian Wedding Invitation Experience
- * Featuring: Virat Kohli & Anushka Sharma
- * Location: Amalfi Coast, Italy (Conceptual Showcase)
+ * Couple: Sidharth Malhotra & Kiara Advani
+ * Destination: Jaipur, Rajasthan, India
+ * Motion Reference: Scroll-driven layered cinematic storytelling
  */
 
 export const weddingConfig = {
-  // Couple Details
-  groom: 'VIRAT KOHLI',
-  groomShort: 'VIRAT',
-  groomRole: 'THE GROOM',
-  bride: 'ANUSHKA SHARMA',
-  brideShort: 'ANUSHKA',
-  brideRole: 'THE BRIDE',
+  // Couple Information
+  couple: {
+    groom: 'SIDHARTH MALHOTRA',
+    groomShort: 'SIDHARTH',
+    groomRole: 'THE GROOM',
+    groomHindiRole: 'वर',
+    bride: 'KIARA ADVANI',
+    brideShort: 'KIARA',
+    brideRole: 'THE BRIDE',
+    brideHindiRole: 'वधू',
+    sharedHeadline: 'TWO LIVES. ONE BEAUTIFUL CELEBRATION.',
+    monogram: 'S & K',
+    monogramLabel: 'Royal Monogram S & K — Sidharth & Kiara',
+    invitationSubtitle: 'A Celebration of Love in the Pink City',
+  },
 
-  // Scene Three: Shared Couple Message
-  coupleMessage:
-    'With the love and blessings of our families, we would be delighted to have you with us as we celebrate the beginning of a beautiful new chapter.',
-  coupleSignoff: 'WITH LOVE,',
-  coupleSignoffNames: 'VIRAT & ANUSHKA',
+  // Color Tokens matching creative direction
+  colors: {
+    royalPink: '#C75B78',
+    jaipurRose: '#D98B91',
+    deepMaroon: '#4A0F22',
+    champagneGold: '#D2AA55',
+    warmIvory: '#F8EEE9',
+    saffron: '#E6A83C',
+    deepPlum: '#48263F',
+    botanicalGreen: '#355C45',
+    terracotta: '#B9634A',
+    goldGlint: '#FFE8A3',
+  },
 
-  // Final Scene: Warm Closing
-  closingEyebrow: 'WITH LOVE AND BLESSINGS',
-  closingNames: 'VIRAT & ANUSHKA',
+  // Exactly Six High-Resolution Photographs
+  images: {
+    // 1. Hero Opening Couple Photograph (Intimate embrace)
+    heroCouple: '/images/sidharth-kiara-hero.jpg',
+    heroCoupleAlt: 'Sidharth Malhotra and Kiara Advani in an affectionate, intimate embrace',
+    heroPosition: 'center 32%',
 
-  // Scene Four: The Four Indian Wedding Ceremonies
+    // 2. Solo Groom Portrait
+    groomPortrait: '/images/sidharth-portrait.jpg',
+    groomPortraitAlt: 'Sidharth Malhotra solo portrait in architectural arch',
+    groomPosition: 'center 18%',
+
+    // 3. Solo Bride Portrait
+    bridePortrait: '/images/kiara-portrait.jpg',
+    bridePortraitAlt: 'Kiara Advani solo portrait in golden sunlight',
+    bridePosition: 'center 18%',
+
+    // 4. Royal Traditional Wedding Ceremony Portrait (Traditional attire in palace arch)
+    royalCeremonyCouple: '/images/sidharth-kiara-royal.jpg',
+    royalCeremonyCoupleAlt: 'Sidharth Malhotra and Kiara Advani in royal traditional wedding attire at palace arch',
+    royalCeremonyPosition: 'center 20%',
+
+    // 5. Celebration Festive Couple Photograph (Joyful celebration under lights)
+    celebrationCouple: '/images/sidharth-kiara-celebration.jpg',
+    celebrationCoupleAlt: 'Sidharth Malhotra and Kiara Advani celebrating joyfully with warm festivity lights',
+    celebrationPosition: 'center 22%',
+
+    // 6. Destination Venue Photograph (Jal Mahal at sunset)
+    venueSunset: '/images/jal-mahal-venue.jpg',
+    venueSunsetAlt: 'Sunset over the majestic Jal Mahal palace on Man Sagar Lake in Jaipur, Rajasthan',
+    venuePosition: 'center 38%',
+
+    // 3D Royal Wax Seal Monogram SVG
+    sealMonogram: '/images/SK-seal.svg',
+    sealMonogramAlt: 'Royal Wax Seal Monogram S & K — Sidharth Malhotra & Kiara Advani',
+  },
+
+  // The Four Indian Wedding Ceremonies
   ceremonies: {
     mehendi: {
       id: 'mehendi',
@@ -34,6 +83,10 @@ export const weddingConfig = {
       hindiTitle: 'मेहंदी',
       date: 'Thursday, 16th December 2026',
       time: '4:00 PM onwards',
+      theme: 'Botanical World',
+      themeColor: '#355C45',
+      accentColor: '#D2AA55',
+      description: 'An afternoon steeped in delicate henna patterns, fragrant mogra blossoms, and gentle sitar melodies.',
     },
     haldi: {
       id: 'haldi',
@@ -41,6 +94,10 @@ export const weddingConfig = {
       hindiTitle: 'हल्दी',
       date: 'Friday, 17th December 2026',
       time: '10:30 AM onwards',
+      theme: 'Marigold World',
+      themeColor: '#E6A83C',
+      accentColor: '#B9634A',
+      description: 'A morning filled with fragrant turmeric paste, golden genda phool showers, and celebratory blessings.',
     },
     sangeet: {
       id: 'sangeet',
@@ -48,6 +105,10 @@ export const weddingConfig = {
       hindiTitle: 'संगीत',
       date: 'Friday, 17th December 2026',
       time: '7:30 PM onwards',
+      theme: 'Rhythm and Movement',
+      themeColor: '#48263F',
+      accentColor: '#D2AA55',
+      description: 'An evening of rhythmic folk beats, celebratory musical performances, and dancing under the stars.',
     },
     wedding: {
       id: 'wedding',
@@ -55,49 +116,28 @@ export const weddingConfig = {
       hindiTitle: 'विवाह',
       date: 'Saturday, 18th December 2026',
       time: '4:30 PM onwards',
+      theme: 'Royal Architecture',
+      themeColor: '#4A0F22',
+      accentColor: '#D2AA55',
+      description: 'The sacred Saat Phere solemnised against a royal palace mandap bathed in twilight pink hues.',
     },
   },
 
-  // Scene Five: Destination Venue
+  // Destination Venue in Jaipur
   venue: {
-    sectionHeading: 'THE CELEBRATION',
-    name: 'Villa Bellissima Estate',
-    address: 'Via Panoramica, 84017 Positano SA, Amalfi Coast, Italy',
-    locationNote: 'Positano, Amalfi Coast · Italy (Conceptual Venue Showcase)',
-    mapsUrl:
-      'https://www.google.com/maps/dir/?api=1&destination=Via+Panoramica%2C+84017+Positano+SA%2C+Amalfi+Coast%2C+Italy',
+    city: 'JAIPUR, RAJASTHAN',
+    state: 'Rajasthan, India',
+    name: 'Jal Mahal Palace & Water Estate',
+    address: 'Amer Road, Jal Mahal, Amber, Jaipur, Rajasthan 302002, India',
+    note: 'Jaipur, Rajasthan · India (Palace Heritage Showcase)',
+    coordinates: '26.9656° N, 75.8457° E • Jaipur, Rajasthan',
+    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Jal+Mahal+Amber+Jaipur+Rajasthan+India',
   },
 
-  // EXACT FIVE LOCAL PHOTOGRAPHS & LOGO
-  images: {
-    // Logo — 3D Gold Wax Seal Monogram (V & A)
-    logoSeal: '/images/VA.png',
-    logoSealAlt: 'Royal Wax Seal Monogram V & A — Virat Kohli & Anushka Sharma',
-
-    // Image 1 — Virat and Anushka together, warm indoor photograph (Hero Opening)
-    heroCouple: '/images/couple-home.jpg',
-    heroCoupleAlt: 'Virat Kohli and Anushka Sharma in an affectionate, intimate embrace',
-    heroPosition: 'center 22%',
-
-    // Image 2 — Virat Kohli solo portrait (Groom Introduction)
-    groomPortrait: '/images/virat-portrait.jpg',
-    groomPortraitAlt: 'Virat Kohli solo portrait in tailored evening attire',
-    groomPosition: 'center 20%',
-
-    // Image 3 — Anushka Sharma solo portrait (Bride Introduction)
-    bridePortrait: '/images/anushka-portrait.jpg',
-    bridePortraitAlt: 'Anushka Sharma solo portrait in black evening blazer with golden sunlight',
-    bridePosition: 'center 18%',
-
-    // Image 4 — Second Virat and Anushka couple photograph (Shared Couple Section)
-    sharedCouple: '/images/couple-garden.jpg',
-    sharedCoupleAlt: 'Virat Kohli and Anushka Sharma together in garden setting, Anushka in ivory silk',
-    sharedPosition: 'center 20%',
-
-    // Image 5 — Italian coastal sunset photograph (Destination Venue)
-    venueSunset: '/images/amalfi-coast.jpg',
-    venueSunsetAlt: 'Sunset over dramatic Italian coastal cliffs and Mediterranean sea in Positano',
-    venuePosition: 'center 38%',
+  // Background Audio
+  audio: {
+    trackTitle: 'Kudmayi',
+    src: '/music/Pritam_Sachet_Tandon_Amitabh_Bhattacharya_-_Kudmayi_From_Rocky_Aur_Rani_Kii_Prem_Kahaani_(mp3.pm).mp3',
   },
 };
 

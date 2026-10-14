@@ -6,9 +6,9 @@ import { MandalaOrnament } from './OrnamentalIcons';
  * SECTION ONE: THE HERO
  * 
  * Emotional focal point of the opening experience:
- * - IMAGE 3: First couple photograph (couple-home.jpg) in an architectural arch
- * - Names Virat & Anushka positioned around the image without covering their faces
- * - Destination venue location: Positano, Amalfi Coast, Italy
+ * - IMAGE 3: First couple photograph (sidharth-kiara-hero.jpg) in an architectural arch
+ * - Names Sidharth & Kiara positioned around the image without covering their faces
+ * - Destination venue location: Jal Mahal, Jaipur, Rajasthan
  * - Wedding date and live countdown updating every second
  * - Subtle rotating geometric mandala behind the composition
  */

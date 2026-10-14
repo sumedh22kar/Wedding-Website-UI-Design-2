@@ -481,7 +481,7 @@ export function WeddingRoyalCouple() {
         </g>
 
         {/* ============================================================
-            THE GROOM (LEFT) — VIRAT IN ROYAL SHERWANI & SAFA
+            THE GROOM (LEFT) — SIDHARTH IN ROYAL SHERWANI & SAFA
             ============================================================ */}
         <g className="royal-character royal-groom">
           {/* Royal Safa / Pagri (Turban) with Royal Kalgi Brooch */}
@@ -541,7 +541,7 @@ export function WeddingRoyalCouple() {
         </g>
 
         {/* ============================================================
-            THE BRIDE (RIGHT) — ANUSHKA IN ROYAL BRIDAL LEHENGA
+            THE BRIDE (RIGHT) — KIARA IN ROYAL BRIDAL LEHENGA
             ============================================================ */}
         <g className="royal-character royal-bride">
           {/* Flowing Bridal Sheer Dupatta Over Head */}

@@ -8,10 +8,10 @@ import RoyalWaxSeal from './RoyalWaxSeal';
  * 
  * Features:
  * - Warm ivory background with subtle vignette
- * - Interactive 3D champagne-gold wax seal stamp `V & A`
+ * - Interactive 3D champagne-gold wax seal stamp `S & K`
  * - Tap wax seal to trigger celebratory blessing petals & sparkles
  * - Minimal champagne-gold divider
- * - WITH LOVE AND BLESSINGS / VIRAT & ANUSHKA
+ * - WITH LOVE AND BLESSINGS / SIDHARTH & KIARA
  */
 export function WarmClosingSection() {
   const { closingEyebrow, closingNames } = weddingConfig;
@@ -52,7 +52,7 @@ export function WarmClosingSection() {
           type="button"
           className="closing-3d-seal-btn"
           onClick={triggerBlessing}
-          aria-label="Tap to bestow blessings upon Virat and Anushka"
+          aria-label="Tap to bestow blessings upon Sidharth and Kiara"
           title="Tap to bestow blessings"
         >
           <RoyalWaxSeal size={96} />

@@ -6,7 +6,7 @@ import { GoldDivider } from './FloralElements';
  * SCENE THREE — THE COUPLE TOGETHER (3D INTERACTIVE EDITORIAL SHOWCASE)
  * 
  * Features:
- * - Second emotional couple moment with Image 4 (couple-garden.jpg)
+ * - Second emotional couple moment with Image 4 (sidharth-kiara-couple.jpg)
  * - Interactive 3D spatial tilt responding to cursor / touch movement
  * - Multi-layer forward depth with floating photo frame and gold filigrees
  * - Warm paper-cream background with fine champagne-gold framing

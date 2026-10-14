@@ -6,13 +6,13 @@ import { GoldDivider, FloatingPetals } from './FloralElements';
  * SCENE ONE — FULL-SCREEN COUPLE OPENING (3D IMMERSIVE CINEMATIC HERO)
  * 
  * Cinematic visual opening:
- * - Edge-to-edge full-screen photograph (Image 1: couple-home.jpg)
+ * - Edge-to-edge full-screen photograph (Image 1: sidharth-kiara-hero.jpg)
  * - Interactive 3D spatial parallax responding smoothly to cursor/touch movement
  * - Deep, soft dark-maroon-to-transparent gradient rising from bottom
  * - Names placed in the darker lower portion with forward 3D layer depth:
- *     VIRAT KOHLI
+ *     SIDHARTH MALHOTRA
  *     &
- *     ANUSHKA SHARMA
+ *     KIARA ADVANI
  * - Small champagne-gold divider below names
  * - Soft fade entrance animation with cinematic drift and floating golden petals
  * - ("Scroll to explore" removed as requested)

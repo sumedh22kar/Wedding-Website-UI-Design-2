@@ -43,9 +43,9 @@ export function CoupleHero() {
           </p>
 
           <h1 className="hero-couple-title">
-            <span className="hero-name-gold">Virat</span>
+            <span className="hero-name-gold">{weddingConfig.groomShort || 'Sidharth'}</span>
             <em className="hero-ampersand-script">&</em>
-            <span className="hero-name-gold">Anushka</span>
+            <span className="hero-name-gold">{weddingConfig.brideShort || 'Kiara'}</span>
           </h1>
 
           <p className="hero-family-passage">

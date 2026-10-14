@@ -6,11 +6,11 @@ import { GoldDivider } from './FloralElements';
  * SCENE FIVE — THE DESTINATION VENUE (3D CINEMATIC WINDOW)
  * 
  * Features:
- * - Image 5: Italian coastal sunset photograph (amalfi-coast.jpg)
+ * - Image 5: Jaipur palace sunset photograph (jal-mahal-venue.jpg)
  * - Interactive 3D spatial tilt tracking cursor/touch position
  * - Rotating 3D gold compass emblem
  * - Floating golden coordinates tag
- * - Large, cinematic photograph preserving warm sky, cliffside buildings, flowers, and sea
+ * - Large, cinematic photograph preserving warm sunset sky, royal palace, and waters
  * - OPEN IN MAPS button opening Google Maps directions
  */
 export function DestinationVenueSection() {
@@ -104,7 +104,7 @@ export function DestinationVenueSection() {
           
           {/* Floating Geographical Coordinates Tag */}
           <div className="venue-coordinates-badge" aria-hidden="true">
-            <span>40.6281° N, 14.4850° E • Positano, Italy</span>
+            <span>{venue.coordinates || '26.9656° N, 75.8457° E • Jaipur, Rajasthan'}</span>
           </div>
 
           <p className="venue-scene-location">{venue.locationNote}</p>

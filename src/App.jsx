@@ -1,50 +1,67 @@
-import React, { useState, useRef } from 'react';
-import InvitationOpening from './components/InvitationOpening';
-import CinematicHero from './components/CinematicHero';
-import PortraitsSection from './components/PortraitsSection';
-import SharedCoupleSection from './components/SharedCoupleSection';
-import CeremoniesSection from './components/CeremoniesSection';
-import DestinationVenueSection from './components/DestinationVenueSection';
-import WarmClosingSection from './components/WarmClosingSection';
+import React, { useState, useRef, useEffect } from 'react';
+import { weddingConfig } from './weddingConfig';
+import JaipurBackgroundWorld from './components/JaipurBackgroundWorld';
+import RoyalInvitationEnvelope from './components/RoyalInvitationEnvelope';
+import HeroScene from './components/HeroScene';
+import PortraitsScene from './components/PortraitsScene';
+import SharedStoryScene from './components/SharedStoryScene';
+import CeremoniesScene from './components/CeremoniesScene';
+import DestinationScene from './components/DestinationScene';
+import FinalCompositionScene from './components/FinalCompositionScene';
+import AmbientAudioController from './components/AmbientAudioController';
 
 /**
- * CINEMATIC INDIAN WEDDING INVITATION EXPERIENCE
- * Featuring: Virat Kohli & Anushka Sharma
+ * ==============================================================================
+ * ROYAL JAIPUR: CINEMATIC WEDDING INVITATION EXPERIENCE
+ * ==============================================================================
+ * Groom: Sidharth Malhotra
+ * Bride: Kiara Advani
+ * Destination: Jaipur, Rajasthan, India
  * 
- * Flow Sequence:
- * - Living Opening Handcrafted Envelope Experience (Interactive 3D Opening)
- *   (Plays "Kudmayi" automatically when envelope is opened, no play/pause button shown)
- * 1. FULL-SCREEN COUPLE HERO (Image 1: couple-home.jpg)
- * 2. BRIDE AND GROOM PORTRAITS (Image 2: virat-portrait.jpg & Image 3: anushka-portrait.jpg)
- * 3. SHARED COUPLE MOMENT (Image 4: couple-garden.jpg + personal message)
- * 4. INDIAN WEDDING CELEBRATIONS (Mehendi, Haldi, Sangeet, Wedding)
- * 5. CINEMATIC DESTINATION VENUE (Image 5: amalfi-coast.jpg + Open in Maps)
- * 6. ELEGANT CLOSING (WITH LOVE AND BLESSINGS / VIRAT & ANUSHKA)
+ * Continuous scroll-driven architecture with a stable base environment,
+ * choreographed foreground motion, and all six supplied photographs.
  */
 export function App() {
   const [isOpeningOpen, setIsOpeningOpen] = useState(true);
+  const [isPlayingMusic, setIsPlayingMusic] = useState(false);
   const audioRef = useRef(null);
 
-  // Play "Kudmayi" automatically when visitor opens the envelope
+  // Play background celebration music
   const handleStartMusic = () => {
     try {
       if (!audioRef.current) {
-        const audioSrc = encodeURI(
-          '/music/Pritam_Sachet_Tandon_Amitabh_Bhattacharya_-_Kudmayi_From_Rocky_Aur_Rani_Kii_Prem_Kahaani_(mp3.pm).mp3'
-        );
-        const audio = new Audio(audioSrc);
+        const audio = new Audio(weddingConfig.audio.src);
         audio.loop = true;
-        audio.volume = 0.85;
+        audio.volume = 0.8;
         audioRef.current = audio;
       }
       const playPromise = audioRef.current.play();
       if (playPromise !== undefined) {
-        playPromise.catch((err) => {
-          console.warn('Audio playback waiting for interaction or error:', err);
-        });
+        playPromise
+          .then(() => setIsPlayingMusic(true))
+          .catch((err) => {
+            console.warn('Audio playback waiting for gesture:', err);
+            setIsPlayingMusic(false);
+          });
       }
     } catch (e) {
-      console.warn('Audio play exception:', e);
+      console.warn('Audio error:', e);
+    }
+  };
+
+  const handleToggleMusic = () => {
+    if (!audioRef.current) {
+      handleStartMusic();
+      return;
+    }
+    if (audioRef.current.paused) {
+      audioRef.current
+        .play()
+        .then(() => setIsPlayingMusic(true))
+        .catch(console.warn);
+    } else {
+      audioRef.current.pause();
+      setIsPlayingMusic(false);
     }
   };
 
@@ -53,35 +70,45 @@ export function App() {
   };
 
   return (
-    <div className="wedding-invitation-app cinematic-experience-root">
-      {/* Living Handcrafted Wedding Invitation Opening Overlay */}
+    <div className="royal-jaipur-app-root">
+      {/* LAYER 1 & 2: Stable, Continuous Jaipur World Environment */}
+      <JaipurBackgroundWorld activeTheme="default" />
+
+      {/* SCENE ONE: The Royal Invitation Reveal (Envelope & 3D S&K Seal) */}
       {isOpeningOpen && (
-        <InvitationOpening
+        <RoyalInvitationEnvelope
           isOpen={isOpeningOpen}
           onOpenStart={handleStartMusic}
           onComplete={handleOpeningComplete}
         />
       )}
 
-      {/* SCENE ONE: FULL-SCREEN COUPLE HERO */}
-      <CinematicHero />
+      {/* Persistent Audio Controller */}
+      <AmbientAudioController
+        isPlaying={isPlayingMusic}
+        onTogglePlay={handleToggleMusic}
+      />
 
-      <main>
-        {/* SCENE TWO: INTRODUCING THE GROOM AND BRIDE */}
-        <PortraitsSection />
+      {/* SCROLL-DRIVEN CINEMATIC JOURNEY */}
+      <main className="cinematic-scroll-container">
+        {/* SCENE TWO: The Hero World (Image 1: sidharth-kiara-hero.jpg) */}
+        <HeroScene />
 
-        {/* SCENE THREE: THE COUPLE TOGETHER */}
-        <SharedCoupleSection />
+        {/* SCENE THREE: Individual Introductions (Image 2: sidharth & Image 3: kiara) */}
+        <PortraitsScene />
 
-        {/* SCENE FOUR: THE INDIAN WEDDING CELEBRATIONS */}
-        <CeremoniesSection />
+        {/* SCENE FOUR: Their Shared Story (Image 4: royal traditional wedding & Image 5: celebration) */}
+        <SharedStoryScene />
 
-        {/* SCENE FIVE: THE DESTINATION VENUE */}
-        <DestinationVenueSection />
+        {/* SCENE FIVE: The Four Indian Wedding Celebrations (Mehendi, Haldi, Sangeet, Wedding) */}
+        <CeremoniesScene />
+
+        {/* SCENE SIX: The Jaipur Destination (Image 6: jal-mahal-venue.jpg) */}
+        <DestinationScene />
       </main>
 
-      {/* FINAL SCENE: A WARM CLOSING */}
-      <WarmClosingSection />
+      {/* SCENE SEVEN: The Final Composition */}
+      <FinalCompositionScene />
     </div>
   );
 }

@@ -6,9 +6,9 @@ import { GoldDivider } from './OrnamentalIcons';
  * SECTION SIX: CLOSING
  * 
  * Calm, refined stationery sign-off:
- * - Virat Kohli
+ * - Sidharth Malhotra
  * - Small gold ornamental divider
- * - Anushka Sharma
+ * - Kiara Advani
  */
 export function ClosingSection() {
   const { groom, bride } = weddingConfig;

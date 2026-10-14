@@ -7,9 +7,9 @@ import { GoldDivider } from './OrnamentalIcons';
  * 
  * Features:
  * - Kicker: "TOGETHER, A NEW BEGINNING"
- * - IMAGE 1: Virat Kohli solo portrait in tall architectural arch with GROOM label
- * - IMAGE 2: Anushka Sharma solo portrait in matching arch with BRIDE label
- * - IMAGE 4: Second couple photograph (couple-garden.jpg) in a distinct editorial composition
+ * - IMAGE 1: Sidharth Malhotra solo portrait in tall architectural arch with GROOM label
+ * - IMAGE 2: Kiara Advani solo portrait in matching arch with BRIDE label
+ * - IMAGE 4: Second couple photograph (sidharth-kiara-couple.jpg) in a distinct editorial composition
  */
 export function CoupleSection() {
   const { groom, bride, images } = weddingConfig;
@@ -19,9 +19,9 @@ export function CoupleSection() {
       <div className="invitation-container">
         <p className="couple-opening-line">Together, A New Beginning</p>
 
-        {/* Solo Portraits Grid: Virat Kohli & Anushka Sharma */}
+        {/* Solo Portraits Grid: Sidharth Malhotra & Kiara Advani */}
         <div className="couple-portraits-grid">
-          {/* GROOM PORTRAIT ARCH (IMAGE 1 — VIRAT KOHLI SOLO PORTRAIT) */}
+          {/* GROOM PORTRAIT ARCH (IMAGE 1 — SIDHARTH MALHOTRA SOLO PORTRAIT) */}
           <div className="portrait-column">
             <div className="portrait-arch-frame">
               <div className="portrait-arch-inner">
@@ -38,7 +38,7 @@ export function CoupleSection() {
             <span className="portrait-role-label">Groom</span>
           </div>
 
-          {/* BRIDE PORTRAIT ARCH (IMAGE 2 — ANUSHKA SHARMA SOLO PORTRAIT) */}
+          {/* BRIDE PORTRAIT ARCH (IMAGE 2 — KIARA ADVANI SOLO PORTRAIT) */}
           <div className="portrait-column">
             <div className="portrait-arch-frame">
               <div className="portrait-arch-inner">
@@ -71,7 +71,7 @@ export function CoupleSection() {
             <div className="editorial-caption-box">
               <GoldDivider width={140} />
               <p className="editorial-kicker">A Shared Chapter</p>
-              <h4 className="editorial-names">Virat &amp; Anushka</h4>
+              <h4 className="editorial-names">{weddingConfig.coupleSignoffNames || 'Sidharth &amp; Kiara'}</h4>
             </div>
           </div>
         </div>
