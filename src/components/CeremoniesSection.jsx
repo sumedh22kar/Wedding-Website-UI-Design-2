@@ -1,25 +1,24 @@
 import React from 'react';
 import { weddingConfig } from '../weddingConfig';
 import {
-  MehendiBotanicalVine,
   MarigoldFallingPetals,
   MarigoldGarlandCluster,
-  SangeetRhythmCircles,
-  GrandMandapArch,
   GoldDivider,
 } from './FloralElements';
+import {
+  MehendiDrawingAnimation,
+  SangeetDancingCouple,
+  WeddingRoyalCouple,
+} from './CeremonyAnimations';
 
 /**
  * SCENE FOUR — THE INDIAN WEDDING CELEBRATIONS
  * 
  * Four immersive ceremony scenes in exact order:
- * 1. Mehendi  (Deep green #173F35, botanical henna vines, leaf silhouettes)
+ * 1. Mehendi  (Deep green #173F35, live henna drawing animation with moving artist cone)
  * 2. Haldi    (Turmeric yellow #E5B92E, drifting marigold petals, garland clusters)
- * 3. Sangeet  (Deep plum #35203F, rhythmic pulsing gold circles & ghungroo dots)
- * 4. Wedding  (Deep crimson #8E2036, grand architectural mandap arch & garlands)
- * 
- * Desktop: sticky stacked film-scene layers.
- * Mobile: natural vertical flow with fluid transitions.
+ * 3. Sangeet  (Deep plum #35203F, animated Indian Garba/Dandiya dancing couple & musical rhythm)
+ * 4. Wedding  (Deep crimson #8E2036, animated royal bride & groom under mandap with sacred fire)
  */
 export function CeremoniesSection() {
   const { mehendi, haldi, sangeet, wedding } = weddingConfig.ceremonies;
@@ -27,15 +26,16 @@ export function CeremoniesSection() {
   return (
     <div className="ceremonies-film-sequence" aria-label="Wedding Celebrations">
       {/* ============================================================
-          1. MEHENDI — BOTANICAL ANIMATION
+          1. MEHENDI — LIVE HENNA DRAWING ANIMATION
           ============================================================ */}
       <section
         id="mehendi"
         className="ceremony-film-scene scene-mehendi"
         aria-label="Mehendi Celebration"
       >
-        <div className="scene-bg-ornament" aria-hidden="true">
-          <MehendiBotanicalVine />
+        {/* Live Henna Drawing Canvas with Moving Artist Cone */}
+        <div className="ceremony-animation-showcase mehendi-showcase" aria-hidden="true">
+          <MehendiDrawingAnimation />
         </div>
 
         <div className="ceremony-scene-content">
@@ -86,15 +86,16 @@ export function CeremoniesSection() {
       </section>
 
       {/* ============================================================
-          3. SANGEET — DANCE AND CELEBRATION
+          3. SANGEET — ANIMATED INDIAN DANCERS
           ============================================================ */}
       <section
         id="sangeet"
         className="ceremony-film-scene scene-sangeet"
         aria-label="Sangeet Celebration"
       >
-        <div className="scene-bg-ornament sangeet-rhythm-wrap" aria-hidden="true">
-          <SangeetRhythmCircles />
+        {/* Animated Dandiya / Garba Dancing Couple */}
+        <div className="ceremony-animation-showcase sangeet-showcase" aria-hidden="true">
+          <SangeetDancingCouple />
         </div>
 
         <div className="ceremony-scene-content">
@@ -112,15 +113,16 @@ export function CeremoniesSection() {
       </section>
 
       {/* ============================================================
-          4. WEDDING — THE GRAND CEREMONY
+          4. WEDDING — ANIMATED ROYAL BRIDE & GROOM
           ============================================================ */}
       <section
         id="wedding"
         className="ceremony-film-scene scene-wedding"
         aria-label="The Wedding Ceremony"
       >
-        <div className="scene-bg-ornament wedding-mandap-wrap" aria-hidden="true">
-          <GrandMandapArch />
+        {/* Animated Royal Indian Bride & Groom under Mandap */}
+        <div className="ceremony-animation-showcase wedding-showcase" aria-hidden="true">
+          <WeddingRoyalCouple />
         </div>
 
         <div className="ceremony-scene-content">
