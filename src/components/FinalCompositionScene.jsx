@@ -10,11 +10,11 @@ gsap.registerPlugin(ScrollTrigger);
  * SCENE SEVEN — THE FINAL COMPOSITION
  * 
  * Features:
- * - Concluding frame of the cinematic wedding journey in dark royal velvet & gold
+ * - Concluding frame of the cinematic wedding journey in rich royal maroon & gold
  * - Refined architectural medallion with Royal S & K wax seal
- * - Interactive tap on wax seal triggers a GSAP celebratory blessing shower
+ * - Interactive tap on wax seal triggers a celebratory blessing shower
  * - Couple names: SIDHARTH MALHOTRA & KIARA ADVANI
- * - No conventional footer, no marketing copy, no RSVP section
+ * - Lightweight, smooth GPU animation
  */
 export function FinalCompositionScene() {
   const { couple } = weddingConfig;
@@ -31,39 +31,41 @@ export function FinalCompositionScene() {
     if (prefersReduced) return;
 
     const ctx = gsap.context(() => {
-      // Seal & card entrance
-      gsap.fromTo(
-        sealBtnRef.current,
-        { scale: 0.7, opacity: 0.5 },
-        {
-          scale: 1,
-          opacity: 1,
-          ease: 'back.out(1.7)',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 85%',
-            end: 'top 40%',
-            scrub: 1,
-          },
-        }
-      );
+      if (sealBtnRef.current) {
+        gsap.fromTo(
+          sealBtnRef.current,
+          { scale: 0.85, opacity: 0 },
+          {
+            scale: 1,
+            opacity: 1,
+            duration: 0.75,
+            ease: 'back.out(1.5)',
+            scrollTrigger: {
+              trigger: sealBtnRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
+      }
 
-      // Names reveal
-      gsap.fromTo(
-        namesRef.current,
-        { y: 30, opacity: 0.7 },
-        {
-          y: 0,
-          opacity: 1,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: namesRef.current,
-            start: 'top 90%',
-            end: 'top 55%',
-            scrub: 1,
-          },
-        }
-      );
+      if (namesRef.current) {
+        gsap.fromTo(
+          namesRef.current,
+          { y: 20, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.75,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: namesRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
+      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -71,32 +73,24 @@ export function FinalCompositionScene() {
 
   const handleTriggerBlessing = () => {
     setBlessingActive(true);
-    // Pulse seal with GSAP
-    if (sealBtnRef.current) {
-      gsap.fromTo(
-        sealBtnRef.current,
-        { scale: 1.15, filter: 'drop-shadow(0 0 30px #F5D77F)' },
-        { scale: 1, filter: 'none', duration: 0.8, ease: 'elastic.out(1, 0.4)' }
-      );
-    }
     setTimeout(() => {
       setBlessingActive(false);
-    }, 4500);
+    }, 4000);
   };
 
   return (
-    <footer ref={sectionRef} className="final-composition-scene dark-final-theme" aria-label="Final Invitation Sign-off">
+    <footer ref={sectionRef} className="final-composition-scene rich-final-theme" aria-label="Final Invitation Sign-off">
       {/* Celebratory Petals & Gold Sparkle Shower on Tap */}
       {blessingActive && (
         <div className="final-blessing-shower" aria-hidden="true">
-          {Array.from({ length: 32 }).map((_, i) => (
+          {Array.from({ length: 24 }).map((_, i) => (
             <span
               key={i}
               className={`shower-petal petal-style-${i % 4}`}
               style={{
-                left: `${(i * 3.1 + 2) % 96}%`,
-                animationDelay: `${(i * 0.12) % 1.5}s`,
-                animationDuration: `${2.6 + (i % 4) * 0.5}s`,
+                left: `${(i * 4.1 + 3) % 94}%`,
+                animationDelay: `${(i * 0.1) % 1.2}s`,
+                animationDuration: `${2.6 + (i % 4) * 0.4}s`,
               }}
             />
           ))}
@@ -116,7 +110,7 @@ export function FinalCompositionScene() {
           aria-label="Tap to bestow blessings upon Sidharth and Kiara"
           title="Tap for royal blessings"
         >
-          <RoyalWaxSeal size={106} />
+          <RoyalWaxSeal size={96} />
           <span className="seal-hint-badge">Tap for blessings</span>
         </button>
 

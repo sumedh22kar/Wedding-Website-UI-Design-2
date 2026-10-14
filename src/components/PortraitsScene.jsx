@@ -9,13 +9,11 @@ gsap.registerPlugin(ScrollTrigger);
  * SCENE THREE — INDIVIDUAL INTRODUCTIONS (GROOM & BRIDE)
  * 
  * Features:
- * - Rich dark royal velvet jewel-toned cards with 24K gold foil borders:
- *   - Groom (Sidharth Malhotra): Midnight Royal Indigo/Navy velvet with scalloped Jharokha arch
- *   - Bride (Kiara Advani): Imperial Jaipur Ruby/Rose velvet with fluted scalloped Jharokha arch
- * - Aggressive GSAP ScrollTrigger:
- *   - Scrubbed 3D angled entry from left and right
- *   - Golden arch gleam and glowing aura
- *   - High contrast, mobile-first responsive presentation
+ * - Rich royal jewel-toned cards with 24K gold foil borders:
+ *   - Groom (Sidharth Malhotra): Rich Royal Indigo/Navy velvet with scalloped Jharokha arch
+ *   - Bride (Kiara Advani): Rich Royal Jaipur Rose/Crimson velvet with fluted scalloped Jharokha arch
+ * - Silky smooth, jitter-free GPU scroll trigger animations
+ * - Clear, high-contrast typography
  */
 export function PortraitsScene() {
   const { couple, images } = weddingConfig;
@@ -32,71 +30,63 @@ export function PortraitsScene() {
     if (prefersReduced) return;
 
     const ctx = gsap.context(() => {
-      // Header reveal
-      gsap.fromTo(
-        headerRef.current,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 80%',
-            end: 'top 45%',
-            scrub: 1,
-          },
-        }
-      );
+      // Header smooth reveal
+      if (headerRef.current) {
+        gsap.fromTo(
+          headerRef.current,
+          { opacity: 0, y: 25 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.75,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
+      }
 
-      // Groom card: 3D scrubbed entrance from left
-      gsap.fromTo(
-        groomCardRef.current,
-        {
-          x: -90,
-          opacity: 0.7,
-          rotationY: 18,
-          scale: 0.92,
-        },
-        {
-          x: 0,
-          opacity: 1,
-          rotationY: 0,
-          scale: 1,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 75%',
-            end: 'top 25%',
-            scrub: 1.2,
-          },
-        }
-      );
+      // Groom card: silky smooth fade-up
+      if (groomCardRef.current) {
+        gsap.fromTo(
+          groomCardRef.current,
+          { y: 35, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.75,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: groomCardRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
+      }
 
-      // Bride card: 3D scrubbed entrance from right
-      gsap.fromTo(
-        brideCardRef.current,
-        {
-          x: 90,
-          opacity: 0.7,
-          rotationY: -18,
-          scale: 0.92,
-        },
-        {
-          x: 0,
-          opacity: 1,
-          rotationY: 0,
-          scale: 1,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 75%',
-            end: 'top 25%',
-            scrub: 1.2,
-          },
-        }
-      );
+      // Bride card: silky smooth fade-up with slight stagger
+      if (brideCardRef.current) {
+        gsap.fromTo(
+          brideCardRef.current,
+          { y: 35, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.75,
+            delay: 0.1,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: brideCardRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
+      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -114,7 +104,7 @@ export function PortraitsScene() {
 
       <div className="portraits-duo-grid">
         {/* GROOM INTRODUCTION (Image 2: Sidharth Malhotra) */}
-        <div ref={groomCardRef} className="portrait-side groom-side dark-groom-card">
+        <div ref={groomCardRef} className="portrait-side groom-side rich-groom-card">
           <div className="jharokha-arch-frame groom-arch">
             {/* Scalloped Arch Crest */}
             <div className="arch-fluted-crown" aria-hidden="true">
@@ -138,7 +128,6 @@ export function PortraitsScene() {
                 loading="lazy"
               />
               <div className="arch-gold-sheen-glare" aria-hidden="true" />
-              <div className="arch-shadow-vignette" aria-hidden="true" />
             </div>
 
             <div className="arch-brass-inlay" aria-hidden="true" />
@@ -152,7 +141,7 @@ export function PortraitsScene() {
         </div>
 
         {/* BRIDE INTRODUCTION (Image 3: Kiara Advani) */}
-        <div ref={brideCardRef} className="portrait-side bride-side dark-bride-card">
+        <div ref={brideCardRef} className="portrait-side bride-side rich-bride-card">
           <div className="jharokha-arch-frame bride-arch">
             {/* Ornate Scalloped Arch Crest */}
             <div className="arch-fluted-crown" aria-hidden="true">
@@ -177,7 +166,6 @@ export function PortraitsScene() {
                 loading="lazy"
               />
               <div className="arch-gold-sheen-glare" aria-hidden="true" />
-              <div className="arch-shadow-vignette" aria-hidden="true" />
             </div>
 
             <div className="arch-brass-inlay" aria-hidden="true" />
